@@ -160,7 +160,6 @@ E:\Code\KhamBenhPro\bin\Debug\KhamBenhPro.exe
 E:\Code\KhamBenhPro\bin\Debug\KhamBenhPro.pdb
 E:\Code\KhamBenhPro\bin\Debug\System.Net.Http.dll
 E:\Code\KhamBenhPro\bin\Debug\System.Net.Http.xml
-E:\Code\KhamBenhPro\obj\Debug\KhamBenhPro.csprojResolveAssemblyReference.cache
 E:\Code\KhamBenhPro\obj\Debug\KhamBenhPro.frmBV01.resources
 E:\Code\KhamBenhPro\obj\Debug\KhamBenhPro.frmRptCLS.resources
 E:\Code\KhamBenhPro\obj\Debug\KhamBenhPro.frmToaThuocBH.resources

@@ -695,59 +695,61 @@ namespace KhamBenhPro.KhamBenh
             #endregion
 
             #region Click chọn CLS lên gridview
-            if (e.Column.FieldName == "tendichvu")
+            try
             {
-                var value = gridView1.GetRowCellValue(e.RowHandle, e.Column);
-                string sql = @"select idbanggiadichvu,idbanggiadichvu as tendichvu,giadichvu,bhtra as giabh,IsSuDungChoBH,fromdate,IdnhomInBV from banggiadichvu where idbanggiadichvu='" + value + "'";
-                DataTable dtCLS2 = DataAcess.Connect.GetTable(sql);
-                if (dtCLS2 != null)
+                if (e.Column.FieldName == "tendichvu")
                 {
-                    gridView1.SetRowCellValue(e.RowHandle, "idbanggiadichvu", dtCLS2.Rows[0]["idbanggiadichvu"].ToString());
-                    gridView1.SetRowCellValue(e.RowHandle, "giadichvu", dtCLS2.Rows[0]["giadichvu"].ToString());
-                    gridView1.SetRowCellValue(e.RowHandle, "soluong", "1");
-                    gridView1.SetRowCellValue(e.RowHandle, "giabh", dtCLS2.Rows[0]["giabh"].ToString());
-                    gridView1.SetRowCellValue(e.RowHandle, "IsSuDungChoBH", dtCLS2.Rows[0]["IsSuDungChoBH"].ToString());
-                    gridView1.SetRowCellValue(e.RowHandle, "IsBHYT_Save", dtCLS2.Rows[0]["IsSuDungChoBH"].ToString());
-                    gridView1.SetRowCellValue(e.RowHandle, "fromdate", dtCLS2.Rows[0]["fromdate"].ToString());
-                    gridView1.SetRowCellValue(e.RowHandle, "idnhomin", dtCLS2.Rows[0]["IdnhomInBV"].ToString());
-                    #region Load Chẩn đoán theo CLS
-                    string sql2 = @"SELECT t.idicd,d.MaICD,MoTaCD_edit 
+                    var value = gridView1.GetRowCellValue(e.RowHandle, e.Column);
+                    string sql = @"select idbanggiadichvu,idbanggiadichvu as tendichvu,giadichvu,bhtra as giabh,IsSuDungChoBH,fromdate,IdnhomInBV from banggiadichvu where idbanggiadichvu='" + value + "'";
+                    DataTable dtCLS2 = DataAcess.Connect.GetTable(sql);
+                    if (dtCLS2 != null)
+                    {
+                        gridView1.SetRowCellValue(e.RowHandle, "idbanggiadichvu", dtCLS2.Rows[0]["idbanggiadichvu"].ToString());
+                        gridView1.SetRowCellValue(e.RowHandle, "giadichvu", dtCLS2.Rows[0]["giadichvu"].ToString());
+                        gridView1.SetRowCellValue(e.RowHandle, "soluong", "1");
+                        gridView1.SetRowCellValue(e.RowHandle, "giabh", dtCLS2.Rows[0]["giabh"].ToString());
+                        gridView1.SetRowCellValue(e.RowHandle, "IsSuDungChoBH", dtCLS2.Rows[0]["IsSuDungChoBH"].ToString());
+                        gridView1.SetRowCellValue(e.RowHandle, "IsBHYT_Save", dtCLS2.Rows[0]["IsSuDungChoBH"].ToString());
+                        gridView1.SetRowCellValue(e.RowHandle, "fromdate", dtCLS2.Rows[0]["fromdate"].ToString());
+                        gridView1.SetRowCellValue(e.RowHandle, "idnhomin", dtCLS2.Rows[0]["IdnhomInBV"].ToString());
+                        #region Load Chẩn đoán theo CLS
+                        string sql2 = @"SELECT t.idicd,d.MaICD,MoTaCD_edit 
                                     FROM chandoantheocls t
                                     inner join ChanDoanICD d on d.IDICD=t.idicd where idbanggiadichvu='" + value + "'";
-                    DataTable dtCLS = DataAcess.Connect.GetTable(sql2);
-                    for (int i = 0; i < dtCLS.Rows.Count; i++)
-                    {
-
-                        string dataGridViewTextBoxColumn4 = dtCLS.Rows[0]["idicd"].ToString();
-                        string dataGridViewTextBoxColumn5 = dtCLS.Rows[0]["maicd"].ToString();
-                        string dataGridViewTextBoxColumn6 = dtCLS.Rows[0]["MoTaCD_edit"].ToString();
-                        string idcdsb = "";
-                        string[] row = { dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn6, idcdsb };
-                        dtgvCDSB.Rows.Add(row);
-                    }
-                    #region kiểm tra trùng chẩn đoán theo thuốc
-                    int colNumber = 0;
-                    for (int i = 0; i < dtgvCDSB.Rows.Count - 1; i++)
-                    {
-                        if (dtgvCDSB.Rows[i].IsNewRow) continue;
-                        string tmp = dtgvCDSB.Rows[i].Cells[colNumber].Value.ToString();
-                        for (int j = dtgvCDSB.Rows.Count - 1; j > i; j--)
+                        DataTable dtCLS = DataAcess.Connect.GetTable(sql2);
+                        for (int i = 0; i < dtCLS.Rows.Count; i++)
                         {
-                            if (dtgvCDSB.Rows[j].IsNewRow) continue;
-                            if (tmp == dtgvCDSB.Rows[j].Cells[colNumber].Value.ToString())
+
+                            string dataGridViewTextBoxColumn4 = dtCLS.Rows[0]["idicd"].ToString();
+                            string dataGridViewTextBoxColumn5 = dtCLS.Rows[0]["maicd"].ToString();
+                            string dataGridViewTextBoxColumn6 = dtCLS.Rows[0]["MoTaCD_edit"].ToString();
+                            string idcdsb = "";
+                            string[] row = { dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn6, idcdsb };
+                            dtgvCDSB.Rows.Add(row);
+                        }
+                        #region kiểm tra trùng chẩn đoán theo thuốc
+                        int colNumber = 0;
+                        for (int i = 0; i < dtgvCDSB.Rows.Count - 1; i++)
+                        {
+                            if (dtgvCDSB.Rows[i].IsNewRow) continue;
+                            string tmp = dtgvCDSB.Rows[i].Cells[colNumber].Value.ToString();
+                            for (int j = dtgvCDSB.Rows.Count - 1; j > i; j--)
                             {
-                                dtgvCDSB.Rows.RemoveAt(j);
+                                if (dtgvCDSB.Rows[j].IsNewRow) continue;
+                                if (tmp == dtgvCDSB.Rows[j].Cells[colNumber].Value.ToString())
+                                {
+                                    dtgvCDSB.Rows.RemoveAt(j);
+                                }
                             }
                         }
-                    }
-                    #endregion
-                    #endregion
+                        #endregion
+                        #endregion
 
-                    #region kiểm tra HBA1C lần trước
-                    if (dtCLS2.Rows[0]["idbanggiadichvu"].ToString() == "10584" || dtCLS2.Rows[0]["idbanggiadichvu"].ToString() == "10281" || dtCLS2.Rows[0]["idbanggiadichvu"].ToString() == "5134")
-                    {
-                        DataTable dtLuuKB = DataAcess.Connect.GetTable(this.dt_LoadBN());
-                        string sql1 = @"select MAX(cls.ngaykham) as ngaykham
+                        #region kiểm tra HBA1C lần trước
+                        if (dtCLS2.Rows[0]["idbanggiadichvu"].ToString() == "10584" || dtCLS2.Rows[0]["idbanggiadichvu"].ToString() == "10281" || dtCLS2.Rows[0]["idbanggiadichvu"].ToString() == "5134")
+                        {
+                            DataTable dtLuuKB = DataAcess.Connect.GetTable(this.dt_LoadBN());
+                            string sql1 = @"select MAX(cls.ngaykham) as ngaykham
                                         from khambenhcanlamsan cls
                                         inner join khambenh kb on kb.idkhambenh=cls.idkhambenh
                                         inner join dangkykham dk on dk.iddangkykham=kb.iddangkykham
@@ -756,18 +758,20 @@ namespace KhamBenhPro.KhamBenh
                                         inner join banggiadichvu bg on bg.idbanggiadichvu=cls.idcanlamsan
                                         where bg.tendichvu like N'%hba1c%'
                                         and bh.sobhyt='" + dtLuuKB.Rows[0]["sobhyt"].ToString() + "'";
-                        DataTable ktra = DataAcess.Connect.GetTable(sql1);
-                      //  textBox1.Text = ktra.Rows.Count.ToString();
-                        if (ktra.Rows[0]["ngaykham"].ToString() != null && ktra.Rows[0]["ngaykham"].ToString() != "" && ktra.Rows[0]["ngaykham"].ToString() != "0" && ktra.Rows[0]["ngaykham"].ToString() !="NULL")
-                        {
-                            MessageBox.Show("Xét nghiệm HBA1C lần trước:" + ktra.Rows[0]["ngaykham"].ToString());
+                            DataTable ktra = DataAcess.Connect.GetTable(sql1);
+                            //  textBox1.Text = ktra.Rows.Count.ToString();
+                            if (ktra.Rows[0]["ngaykham"].ToString() != null && ktra.Rows[0]["ngaykham"].ToString() != "" && ktra.Rows[0]["ngaykham"].ToString() != "0" && ktra.Rows[0]["ngaykham"].ToString() != "NULL")
+                            {
+                                MessageBox.Show("Xét nghiệm HBA1C lần trước:" + ktra.Rows[0]["ngaykham"].ToString());
+                            }
+                            else return;
+
                         }
-                        else return;
-                        
+                        #endregion
                     }
-                    #endregion
                 }
             }
+            catch { return; }
             #endregion
              
         }
@@ -796,25 +800,29 @@ namespace KhamBenhPro.KhamBenh
             #endregion
 
             #region Click chọn CLS lên gridview
-            if (e.Column.FieldName == "tendichvu")
+            try
             {
-                var value = gridView9.GetRowCellValue(e.RowHandle, e.Column);
-                string sql = @"select idbanggiadichvu,idbanggiadichvu as tendichvu,giadichvu,giabh,IsSuDungChoBH,fromdate,IdnhomInBV from banggiadichvu where idbanggiadichvu='" + value + "'";
-                DataTable dtCLS2 = DataAcess.Connect.GetTable(sql);
-                if (dtCLS2 != null)
+                if (e.Column.FieldName == "tendichvu")
                 {
-                    gridView9.SetRowCellValue(e.RowHandle, "idbanggiadichvu", dtCLS2.Rows[0]["idbanggiadichvu"].ToString());
-                    //    gridView1.SetRowCellValue(e.RowHandle, "tendichvu", dtCLS2.Rows[0]["tendichvu"].ToString());
-                    gridView9.SetRowCellValue(e.RowHandle, "giadichvu", dtCLS2.Rows[0]["giadichvu"].ToString());
-                    gridView9.SetRowCellValue(e.RowHandle, "soluong", "1");
-                    gridView9.SetRowCellValue(e.RowHandle, "giabh", dtCLS2.Rows[0]["giabh"].ToString());
-                    gridView9.SetRowCellValue(e.RowHandle, "IsSuDungChoBH", dtCLS2.Rows[0]["IsSuDungChoBH"].ToString());
-                    gridView9.SetRowCellValue(e.RowHandle, "IsBHYT_Save", dtCLS2.Rows[0]["IsSuDungChoBH"].ToString());
-                    gridView9.SetRowCellValue(e.RowHandle, "fromdate", dtCLS2.Rows[0]["fromdate"].ToString());
-                    gridView9.SetRowCellValue(e.RowHandle, "idnhomin", dtCLS2.Rows[0]["IdnhomInBV"].ToString());
+                    var value = gridView9.GetRowCellValue(e.RowHandle, e.Column);
+                    string sql = @"select idbanggiadichvu,idbanggiadichvu as tendichvu,giadichvu,giabh,IsSuDungChoBH,fromdate,IdnhomInBV from banggiadichvu where idbanggiadichvu='" + value + "'";
+                    DataTable dtCLS2 = DataAcess.Connect.GetTable(sql);
+                    if (dtCLS2 != null)
+                    {
+                        gridView9.SetRowCellValue(e.RowHandle, "idbanggiadichvu", dtCLS2.Rows[0]["idbanggiadichvu"].ToString());
+                        //    gridView1.SetRowCellValue(e.RowHandle, "tendichvu", dtCLS2.Rows[0]["tendichvu"].ToString());
+                        gridView9.SetRowCellValue(e.RowHandle, "giadichvu", dtCLS2.Rows[0]["giadichvu"].ToString());
+                        gridView9.SetRowCellValue(e.RowHandle, "soluong", "1");
+                        gridView9.SetRowCellValue(e.RowHandle, "giabh", dtCLS2.Rows[0]["giabh"].ToString());
+                        gridView9.SetRowCellValue(e.RowHandle, "IsSuDungChoBH", dtCLS2.Rows[0]["IsSuDungChoBH"].ToString());
+                        gridView9.SetRowCellValue(e.RowHandle, "IsBHYT_Save", dtCLS2.Rows[0]["IsSuDungChoBH"].ToString());
+                        gridView9.SetRowCellValue(e.RowHandle, "fromdate", dtCLS2.Rows[0]["fromdate"].ToString());
+                        gridView9.SetRowCellValue(e.RowHandle, "idnhomin", dtCLS2.Rows[0]["IdnhomInBV"].ToString());
 
+                    }
                 }
             }
+            catch { return; }
             #endregion
         }
 
@@ -991,10 +999,12 @@ namespace KhamBenhPro.KhamBenh
             #endregion
 
             #region Click chọn thuốc vào gridview Thuốc
-            if (e.Column.FieldName == "tenthuoc")
+            try
             {
-                var value = gridView4.GetRowCellValue(e.RowHandle, e.Column);
-                string sql = @"select * from (SELECT B.IDTHUOC as idthuoc
+                if (e.Column.FieldName == "tenthuoc")
+                {
+                    var value = gridView4.GetRowCellValue(e.RowHandle, e.Column);
+                    string sql = @"select * from (SELECT B.IDTHUOC as idthuoc
 										,B.TENTHUOC as tenthuoc
 										,B.LOAITHUOCID as loaithuocid
 										,C.TENDVT as TenDVT
@@ -1019,77 +1029,79 @@ namespace KhamBenhPro.KhamBenh
                                         and b.tenthuoc is not null
                                         and b.idthuoc='" + value + @"')ab
                                         where slton>0 and dongia>0
-                                        ORDER BY TENTHUOC"; 
-                DataTable dt = DataAcess.Connect.GetTable(sql);
-                if (dt != null)
-                {
-                    gridView4.SetRowCellValue(e.RowHandle, "idthuoc", dt.Rows[0]["idthuoc"].ToString());
-                    // gridView2.SetRowCellValue(e.RowHandle, "MaICD", dt.Rows[0]["MaICD"].ToString());
-                    gridView4.SetRowCellValue(e.RowHandle, "congthuc", dt.Rows[0]["congthuc"].ToString());
-                    gridView4.SetRowCellValue(e.RowHandle, "TenDVT", dt.Rows[0]["TenDVT"].ToString());
-                    gridView4.SetRowCellValue(e.RowHandle, "iddvt", dt.Rows[0]["iddvt"].ToString());
-                    gridView4.SetRowCellValue(e.RowHandle, "isbhyt", dt.Rows[0]["isbhyt"].ToString());
-                    gridView4.SetRowCellValue(e.RowHandle, "slton", dt.Rows[0]["SLTON"].ToString());
-                    gridView4.SetRowCellValue(e.RowHandle, "ghichu", dt.Rows[0]["ghichu"].ToString());
-                    gridView4.SetRowCellValue(e.RowHandle, "IsBHYT_Save", dt.Rows[0]["isbhyt"].ToString());
-                    gridView4.SetRowCellValue(e.RowHandle, "issang",1 );
-                    gridView4.SetRowCellValue(e.RowHandle, "ischieu", 1);
-                    gridView4.SetRowCellValue(e.RowHandle, "ngayuong", 2);
-                    gridView4.SetRowCellValue(e.RowHandle, "moilanuong", 1);
-                    gridView4.SetRowCellValue(e.RowHandle, "idcachdung", 1);
-                    gridView4.SetRowCellValue(e.RowHandle, "iddvdung", 1);
-                    DataTable dtTemp = DataAcess.Connect.GetTable(this.dt_LoadBN());
-                    string idkb2 = dtTemp.Rows[0]["iddangkykham"].ToString();
-                    string sql3 = @"select ct.idthuoc from chitietbenhnhantoathuoc ct
+                                        ORDER BY TENTHUOC";
+                    DataTable dt = DataAcess.Connect.GetTable(sql);
+                    if (dt != null)
+                    {
+                        gridView4.SetRowCellValue(e.RowHandle, "idthuoc", dt.Rows[0]["idthuoc"].ToString());
+                        // gridView2.SetRowCellValue(e.RowHandle, "MaICD", dt.Rows[0]["MaICD"].ToString());
+                        gridView4.SetRowCellValue(e.RowHandle, "congthuc", dt.Rows[0]["congthuc"].ToString());
+                        gridView4.SetRowCellValue(e.RowHandle, "TenDVT", dt.Rows[0]["TenDVT"].ToString());
+                        gridView4.SetRowCellValue(e.RowHandle, "iddvt", dt.Rows[0]["iddvt"].ToString());
+                        gridView4.SetRowCellValue(e.RowHandle, "isbhyt", dt.Rows[0]["isbhyt"].ToString());
+                        gridView4.SetRowCellValue(e.RowHandle, "slton", dt.Rows[0]["SLTON"].ToString());
+                        gridView4.SetRowCellValue(e.RowHandle, "ghichu", dt.Rows[0]["ghichu"].ToString());
+                        gridView4.SetRowCellValue(e.RowHandle, "IsBHYT_Save", dt.Rows[0]["isbhyt"].ToString());
+                        gridView4.SetRowCellValue(e.RowHandle, "issang", 1);
+                        gridView4.SetRowCellValue(e.RowHandle, "ischieu", 1);
+                        gridView4.SetRowCellValue(e.RowHandle, "ngayuong", 2);
+                        gridView4.SetRowCellValue(e.RowHandle, "moilanuong", 1);
+                        gridView4.SetRowCellValue(e.RowHandle, "idcachdung", 1);
+                        gridView4.SetRowCellValue(e.RowHandle, "iddvdung", 1);
+                        DataTable dtTemp = DataAcess.Connect.GetTable(this.dt_LoadBN());
+                        string idkb2 = dtTemp.Rows[0]["iddangkykham"].ToString();
+                        string sql3 = @"select ct.idthuoc from chitietbenhnhantoathuoc ct
                                     inner join khambenh kb on kb.idkhambenh=ct.idkhambenh
                                     inner join dangkykham dk on dk.iddangkykham=kb.iddangkykham
                                     where dk.iddangkykham='" + idkb2 + @"'
                                     and ct.idthuoc='" + value + "'";
-                    DataTable dtthuoc = DataAcess.Connect.GetTable(sql3);
-                    if (dtthuoc.Rows.Count > 0)
-                    {
-                        MessageBox.Show("Hôm nay, thuốc này đã có rồi ở phòng khám khác!");
-                        gridView4.DeleteRow(gridView4.FocusedRowHandle);
-                    }
-                    else return;
+                        DataTable dtthuoc = DataAcess.Connect.GetTable(sql3);
+                        if (dtthuoc.Rows.Count > 0)
+                        {
+                            MessageBox.Show("Hôm nay, thuốc này đã có rồi ở phòng khám khác!");
+                            gridView4.DeleteRow(gridView4.FocusedRowHandle);
+                        }
+                        else return;
 
-                    #region Chẩn đoán kèm theo thuốc
-                    string sql2 = @"SELECT t.idicd,d.MaICD,MoTaCD_edit 
+                        #region Chẩn đoán kèm theo thuốc
+                        string sql2 = @"SELECT t.idicd,d.MaICD,MoTaCD_edit 
                                     FROM chandoantheothuoc t
                                     inner join ChanDoanICD d on d.IDICD=t.idicd where idthuoc='" + value + "'";
-                    dt2 = DataAcess.Connect.GetTable(sql2);
-                    for(int i=0;i<dt2.Rows.Count;i++)
-                    {
-                        string idicd = dt2.Rows[i]["idicd"].ToString();
-                        string MaICD = dt2.Rows[i]["MaICD"].ToString();
-                        string MoTaCD_edit = dt2.Rows[i]["MoTaCD_edit"].ToString();
-                        string ID_CDPH = "";
-                        string[] row = { idicd, MaICD, MoTaCD_edit, ID_CDPH };
-                        dtgvChanDoan.Rows.Add(row);
-                       // dtgvChanDoan.AutoResizeColumns();
-                       // dtgvChanDoan.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-                    }
-                    #endregion
-                    #region kiểm tra trùng chẩn đoán theo thuốc
-                    int colNumber = 0;
-                    for (int i = 0; i < dtgvChanDoan.Rows.Count - 1; i++)
-                    {
-                        if (dtgvChanDoan.Rows[i].IsNewRow) continue;
-                        string tmp = dtgvChanDoan.Rows[i].Cells[colNumber].Value.ToString();
-                        for (int j = dtgvChanDoan.Rows.Count - 1; j > i; j--)
+                        dt2 = DataAcess.Connect.GetTable(sql2);
+                        for (int i = 0; i < dt2.Rows.Count; i++)
                         {
-                            if (dtgvChanDoan.Rows[j].IsNewRow) continue;
-                            if (tmp == dtgvChanDoan.Rows[j].Cells[colNumber].Value.ToString())
+                            string idicd = dt2.Rows[i]["idicd"].ToString();
+                            string MaICD = dt2.Rows[i]["MaICD"].ToString();
+                            string MoTaCD_edit = dt2.Rows[i]["MoTaCD_edit"].ToString();
+                            string ID_CDPH = "";
+                            string[] row = { idicd, MaICD, MoTaCD_edit, ID_CDPH };
+                            dtgvChanDoan.Rows.Add(row);
+                            // dtgvChanDoan.AutoResizeColumns();
+                            // dtgvChanDoan.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+                        }
+                        #endregion
+                        #region kiểm tra trùng chẩn đoán theo thuốc
+                        int colNumber = 0;
+                        for (int i = 0; i < dtgvChanDoan.Rows.Count - 1; i++)
+                        {
+                            if (dtgvChanDoan.Rows[i].IsNewRow) continue;
+                            string tmp = dtgvChanDoan.Rows[i].Cells[colNumber].Value.ToString();
+                            for (int j = dtgvChanDoan.Rows.Count - 1; j > i; j--)
                             {
-                                dtgvChanDoan.Rows.RemoveAt(j);
+                                if (dtgvChanDoan.Rows[j].IsNewRow) continue;
+                                if (tmp == dtgvChanDoan.Rows[j].Cells[colNumber].Value.ToString())
+                                {
+                                    dtgvChanDoan.Rows.RemoveAt(j);
+                                }
                             }
                         }
+                        #endregion
+
                     }
-                    #endregion
-   
+
                 }
-               
             }
+            catch { return; }
             #endregion
         }
 
@@ -2900,10 +2912,12 @@ namespace KhamBenhPro.KhamBenh
             #endregion
 
             #region Click chọn thuốc vào gridview Thuốc Dịch vụ
-            if (e.Column.FieldName == "tenthuoc")
+            try
             {
-                var value = gridView15.GetRowCellValue(e.RowHandle, e.Column);
-                string sql = @"select * from (SELECT B.IDTHUOC as idthuoc
+                if (e.Column.FieldName == "tenthuoc")
+                {
+                    var value = gridView15.GetRowCellValue(e.RowHandle, e.Column);
+                    string sql = @"select * from (SELECT B.IDTHUOC as idthuoc
 						                                ,B.TENTHUOC as tenthuoc
                                                         ,B.LOAITHUOCID as loaithuocid
                                                         ,c.TenDVT
@@ -2928,25 +2942,27 @@ namespace KhamBenhPro.KhamBenh
 						AND ISNULL(B.IsNgungSD,0)=0)ab
                         where slton>0 and dongia>0
 						ORDER BY  isnull(isbhyt,0) desc, isnull( isthuocbv,0) desc ,tenthuoc ASC";
-                DataTable dt = DataAcess.Connect.GetTable(sql);
-                if (dt != null)
-                {
-                    gridView15.SetRowCellValue(e.RowHandle, "idthuoc", dt.Rows[0]["idthuoc"].ToString());
-                    // gridView2.SetRowCellValue(e.RowHandle, "MaICD", dt.Rows[0]["MaICD"].ToString());
-                    gridView15.SetRowCellValue(e.RowHandle, "congthuc", dt.Rows[0]["congthuc"].ToString());
-                    gridView15.SetRowCellValue(e.RowHandle, "TenDVT", dt.Rows[0]["TenDVT"].ToString());
-                    gridView15.SetRowCellValue(e.RowHandle, "iddvt", dt.Rows[0]["iddvt"].ToString());
-                    gridView15.SetRowCellValue(e.RowHandle, "isbhyt", dt.Rows[0]["isbhyt"].ToString());
-                    gridView15.SetRowCellValue(e.RowHandle, "slton", dt.Rows[0]["SLTON"].ToString());
-                   // gridView15.SetRowCellValue(e.RowHandle, "IsBHYT_Save", dt.Rows[0]["isbhyt"].ToString());
-                    gridView15.SetRowCellValue(e.RowHandle, "issang", 1);
-                    gridView15.SetRowCellValue(e.RowHandle, "ischieu", 1);
-                    gridView15.SetRowCellValue(e.RowHandle, "ngayuong", 2);
-                    gridView15.SetRowCellValue(e.RowHandle, "moilanuong", 1);
-                    gridView15.SetRowCellValue(e.RowHandle, "idcachdung", 1);
-                    gridView15.SetRowCellValue(e.RowHandle, "iddvdung", 1);
+                    DataTable dt = DataAcess.Connect.GetTable(sql);
+                    if (dt != null)
+                    {
+                        gridView15.SetRowCellValue(e.RowHandle, "idthuoc", dt.Rows[0]["idthuoc"].ToString());
+                        // gridView2.SetRowCellValue(e.RowHandle, "MaICD", dt.Rows[0]["MaICD"].ToString());
+                        gridView15.SetRowCellValue(e.RowHandle, "congthuc", dt.Rows[0]["congthuc"].ToString());
+                        gridView15.SetRowCellValue(e.RowHandle, "TenDVT", dt.Rows[0]["TenDVT"].ToString());
+                        gridView15.SetRowCellValue(e.RowHandle, "iddvt", dt.Rows[0]["iddvt"].ToString());
+                        gridView15.SetRowCellValue(e.RowHandle, "isbhyt", dt.Rows[0]["isbhyt"].ToString());
+                        gridView15.SetRowCellValue(e.RowHandle, "slton", dt.Rows[0]["SLTON"].ToString());
+                        // gridView15.SetRowCellValue(e.RowHandle, "IsBHYT_Save", dt.Rows[0]["isbhyt"].ToString());
+                        gridView15.SetRowCellValue(e.RowHandle, "issang", 1);
+                        gridView15.SetRowCellValue(e.RowHandle, "ischieu", 1);
+                        gridView15.SetRowCellValue(e.RowHandle, "ngayuong", 2);
+                        gridView15.SetRowCellValue(e.RowHandle, "moilanuong", 1);
+                        gridView15.SetRowCellValue(e.RowHandle, "idcachdung", 1);
+                        gridView15.SetRowCellValue(e.RowHandle, "iddvdung", 1);
+                    }
                 }
             }
+            catch { return; }
             #endregion
         }
 
