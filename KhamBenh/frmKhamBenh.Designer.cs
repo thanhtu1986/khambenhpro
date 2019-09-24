@@ -768,6 +768,7 @@
             this.txtBMI.Name = "txtBMI";
             this.txtBMI.Size = new System.Drawing.Size(104, 20);
             this.txtBMI.TabIndex = 50;
+            this.txtBMI.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBMI_KeyDown);
             // 
             // label6
             // 
@@ -800,6 +801,7 @@
             this.txtNhipTho.Name = "txtNhipTho";
             this.txtNhipTho.Size = new System.Drawing.Size(104, 20);
             this.txtNhipTho.TabIndex = 12;
+            this.txtNhipTho.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNhipTho_KeyDown);
             // 
             // labelControl24
             // 
@@ -872,6 +874,7 @@
             this.txtMach.Name = "txtMach";
             this.txtMach.Size = new System.Drawing.Size(104, 20);
             this.txtMach.TabIndex = 6;
+            this.txtMach.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMach_KeyDown);
             // 
             // txtNhietDo
             // 
@@ -883,6 +886,7 @@
             this.txtNhietDo.Name = "txtNhietDo";
             this.txtNhietDo.Size = new System.Drawing.Size(104, 20);
             this.txtNhietDo.TabIndex = 10;
+            this.txtNhietDo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNhietDo_KeyDown);
             // 
             // label10
             // 
@@ -914,6 +918,7 @@
             this.txtCanNang.Name = "txtCanNang";
             this.txtCanNang.Size = new System.Drawing.Size(104, 20);
             this.txtCanNang.TabIndex = 14;
+            this.txtCanNang.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCanNang_KeyDown);
             // 
             // txtHuyetAp
             // 
@@ -925,6 +930,7 @@
             this.txtHuyetAp.Name = "txtHuyetAp";
             this.txtHuyetAp.Size = new System.Drawing.Size(40, 20);
             this.txtHuyetAp.TabIndex = 8;
+            this.txtHuyetAp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtHuyetAp_KeyDown);
             // 
             // label13
             // 
@@ -976,6 +982,7 @@
             this.txtHuyetAp2.Name = "txtHuyetAp2";
             this.txtHuyetAp2.Size = new System.Drawing.Size(39, 20);
             this.txtHuyetAp2.TabIndex = 28;
+            this.txtHuyetAp2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtHuyetAp2_KeyDown);
             // 
             // label11
             // 
@@ -997,6 +1004,7 @@
             this.txtChieuCao.Name = "txtChieuCao";
             this.txtChieuCao.Size = new System.Drawing.Size(104, 20);
             this.txtChieuCao.TabIndex = 16;
+            this.txtChieuCao.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtChieuCao_KeyDown);
             // 
             // groupControl2
             // 
@@ -1139,7 +1147,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.sluBacsi.Properties.View = this.searchLookUpEdit6View;
             this.sluBacsi.Size = new System.Drawing.Size(216, 20);
-            this.sluBacsi.TabIndex = 58;
+            this.sluBacsi.TabIndex = 16;
             // 
             // searchLookUpEdit6View
             // 
@@ -1452,7 +1460,8 @@
             this.slNhomCLS.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.slNhomCLS.Properties.View = this.customGridView1;
             this.slNhomCLS.Size = new System.Drawing.Size(336, 20);
-            this.slNhomCLS.TabIndex = 44;
+            this.slNhomCLS.TabIndex = 18;
+            this.slNhomCLS.KeyDown += new System.Windows.Forms.KeyEventHandler(this.slNhomCLS_KeyDown);
             // 
             // customGridView1
             // 
@@ -1494,13 +1503,13 @@
             this.txtCDSB.Location = new System.Drawing.Point(92, 69);
             this.txtCDSB.Name = "txtCDSB";
             this.txtCDSB.Size = new System.Drawing.Size(249, 21);
-            this.txtCDSB.TabIndex = 43;
+            this.txtCDSB.TabIndex = 18;
             this.txtCDSB.Text = "Chẩn đoán sơ bộ";
             // 
             // btnThemCDSB
             // 
             this.btnThemCDSB.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThemCDSB.ImageOptions.Image")));
-            this.btnThemCDSB.Location = new System.Drawing.Point(347, 69);
+            this.btnThemCDSB.Location = new System.Drawing.Point(347, 68);
             this.btnThemCDSB.Name = "btnThemCDSB";
             this.btnThemCDSB.Size = new System.Drawing.Size(75, 23);
             this.btnThemCDSB.TabIndex = 42;
@@ -1517,8 +1526,9 @@
             this.gluCDSobo.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.gluCDSobo.Properties.View = this.customGridView7;
             this.gluCDSobo.Size = new System.Drawing.Size(78, 20);
-            this.gluCDSobo.TabIndex = 41;
+            this.gluCDSobo.TabIndex = 17;
             this.gluCDSobo.EditValueChanged += new System.EventHandler(this.gluCDSobo_EditValueChanged);
+            this.gluCDSobo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gluCDSobo_KeyDown);
             // 
             // customGridView7
             // 
@@ -1645,6 +1655,7 @@
             this.txtdiung.Name = "txtdiung";
             this.txtdiung.Size = new System.Drawing.Size(623, 21);
             this.txtdiung.TabIndex = 15;
+            this.txtdiung.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtdiung_KeyDown);
             // 
             // txtbenhsu
             // 
@@ -1656,6 +1667,7 @@
             this.txtbenhsu.Name = "txtbenhsu";
             this.txtbenhsu.Size = new System.Drawing.Size(623, 21);
             this.txtbenhsu.TabIndex = 14;
+            this.txtbenhsu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbenhsu_KeyDown);
             // 
             // txttrieuchung
             // 
@@ -1667,6 +1679,7 @@
             this.txttrieuchung.Name = "txttrieuchung";
             this.txttrieuchung.Size = new System.Drawing.Size(623, 21);
             this.txttrieuchung.TabIndex = 13;
+            this.txttrieuchung.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txttrieuchung_KeyDown);
             // 
             // txttiensu
             // 
@@ -1678,6 +1691,7 @@
             this.txttiensu.Name = "txttiensu";
             this.txttiensu.Size = new System.Drawing.Size(623, 21);
             this.txttiensu.TabIndex = 12;
+            this.txttiensu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txttiensu_KeyDown);
             // 
             // label4
             // 
@@ -1798,7 +1812,7 @@
             this.txtLoidan.Location = new System.Drawing.Point(99, 197);
             this.txtLoidan.Name = "txtLoidan";
             this.txtLoidan.Size = new System.Drawing.Size(706, 21);
-            this.txtLoidan.TabIndex = 39;
+            this.txtLoidan.TabIndex = 37;
             // 
             // txtCDXD
             // 
@@ -1816,7 +1830,7 @@
             this.txtGhichu.Location = new System.Drawing.Point(99, 172);
             this.txtGhichu.Name = "txtGhichu";
             this.txtGhichu.Size = new System.Drawing.Size(706, 21);
-            this.txtGhichu.TabIndex = 38;
+            this.txtGhichu.TabIndex = 36;
             // 
             // label22
             // 
@@ -1843,7 +1857,7 @@
             this.txtSongayratoa.Location = new System.Drawing.Point(100, 90);
             this.txtSongayratoa.Name = "txtSongayratoa";
             this.txtSongayratoa.Size = new System.Drawing.Size(74, 21);
-            this.txtSongayratoa.TabIndex = 41;
+            this.txtSongayratoa.TabIndex = 35;
             this.txtSongayratoa.TextChanged += new System.EventHandler(this.txtSongayratoa_TextChanged);
             // 
             // sluCDXD
@@ -1880,6 +1894,7 @@
             this.dtgvChanDoan.Name = "dtgvChanDoan";
             this.dtgvChanDoan.Size = new System.Drawing.Size(507, 153);
             this.dtgvChanDoan.TabIndex = 36;
+            this.dtgvChanDoan.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvChanDoan_CellContentClick_1);
             this.dtgvChanDoan.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dtgvChanDoan_CellPainting_1);
             // 
             // idicd
@@ -1937,7 +1952,7 @@
             // btnThemCDPH
             // 
             this.btnThemCDPH.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThemCDPH.ImageOptions.Image")));
-            this.btnThemCDPH.Location = new System.Drawing.Point(422, 53);
+            this.btnThemCDPH.Location = new System.Drawing.Point(422, 52);
             this.btnThemCDPH.Name = "btnThemCDPH";
             this.btnThemCDPH.Size = new System.Drawing.Size(75, 23);
             this.btnThemCDPH.TabIndex = 37;
@@ -1949,7 +1964,7 @@
             this.txtCDPH.Location = new System.Drawing.Point(100, 53);
             this.txtCDPH.Name = "txtCDPH";
             this.txtCDPH.Size = new System.Drawing.Size(307, 21);
-            this.txtCDPH.TabIndex = 39;
+            this.txtCDPH.TabIndex = 34;
             // 
             // dtpkTaikham
             // 
@@ -1980,8 +1995,9 @@
             this.sluCDPH.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.sluCDPH.Properties.View = this.customGridView9;
             this.sluCDPH.Size = new System.Drawing.Size(85, 20);
-            this.sluCDPH.TabIndex = 38;
+            this.sluCDPH.TabIndex = 33;
             this.sluCDPH.EditValueChanged += new System.EventHandler(this.sluCDPH_EditValueChanged_1);
+            this.sluCDPH.KeyDown += new System.Windows.Forms.KeyEventHandler(this.sluCDPH_KeyDown);
             // 
             // customGridView9
             // 
@@ -2008,10 +2024,12 @@
             this.expandablePanel2.Controls.Add(this.groupControl4);
             this.expandablePanel2.Controls.Add(this.groupControl5);
             this.expandablePanel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.expandablePanel2.Expanded = false;
+            this.expandablePanel2.ExpandedBounds = new System.Drawing.Rectangle(0, 78, 1038, 230);
             this.expandablePanel2.ExpandOnTitleClick = true;
-            this.expandablePanel2.Location = new System.Drawing.Point(0, 78);
+            this.expandablePanel2.Location = new System.Drawing.Point(0, 244);
             this.expandablePanel2.Name = "expandablePanel2";
-            this.expandablePanel2.Size = new System.Drawing.Size(1038, 230);
+            this.expandablePanel2.Size = new System.Drawing.Size(1038, 26);
             this.expandablePanel2.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.expandablePanel2.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.expandablePanel2.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -2403,12 +2421,10 @@
             this.expandablePanel14.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.expandablePanel14.Controls.Add(this.grcCLShen);
             this.expandablePanel14.Dock = System.Windows.Forms.DockStyle.Top;
-            this.expandablePanel14.Expanded = false;
-            this.expandablePanel14.ExpandedBounds = new System.Drawing.Rectangle(0, 52, 1038, 192);
             this.expandablePanel14.ExpandOnTitleClick = true;
             this.expandablePanel14.Location = new System.Drawing.Point(0, 52);
             this.expandablePanel14.Name = "expandablePanel14";
-            this.expandablePanel14.Size = new System.Drawing.Size(1038, 26);
+            this.expandablePanel14.Size = new System.Drawing.Size(1038, 192);
             this.expandablePanel14.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.expandablePanel14.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.expandablePanel14.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -2436,7 +2452,7 @@
             this.grcCLShen.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCLShen,
             this.btnXoahen});
-            this.grcCLShen.Size = new System.Drawing.Size(1038, 0);
+            this.grcCLShen.Size = new System.Drawing.Size(1038, 166);
             this.grcCLShen.TabIndex = 11;
             this.grcCLShen.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView9});
@@ -2882,6 +2898,8 @@
             this.gridColumn64.Caption = "Hoạt chất";
             this.gridColumn64.FieldName = "congthuc";
             this.gridColumn64.Name = "gridColumn64";
+            this.gridColumn64.OptionsColumn.AllowEdit = false;
+            this.gridColumn64.OptionsColumn.AllowFocus = false;
             this.gridColumn64.Visible = true;
             this.gridColumn64.VisibleIndex = 1;
             this.gridColumn64.Width = 120;
@@ -2891,6 +2909,8 @@
             this.gridColumn65.Caption = "ĐVT";
             this.gridColumn65.FieldName = "TenDVT";
             this.gridColumn65.Name = "gridColumn65";
+            this.gridColumn65.OptionsColumn.AllowEdit = false;
+            this.gridColumn65.OptionsColumn.AllowFocus = false;
             this.gridColumn65.Visible = true;
             this.gridColumn65.VisibleIndex = 2;
             this.gridColumn65.Width = 32;
@@ -3056,6 +3076,8 @@
             this.gridColumn80.Caption = "DM_BH";
             this.gridColumn80.FieldName = "isbhyt";
             this.gridColumn80.Name = "gridColumn80";
+            this.gridColumn80.OptionsColumn.AllowEdit = false;
+            this.gridColumn80.OptionsColumn.AllowFocus = false;
             this.gridColumn80.Visible = true;
             this.gridColumn80.VisibleIndex = 13;
             this.gridColumn80.Width = 45;
@@ -3101,6 +3123,8 @@
             this.gridColumn85.Caption = "SLT";
             this.gridColumn85.FieldName = "slton";
             this.gridColumn85.Name = "gridColumn85";
+            this.gridColumn85.OptionsColumn.AllowEdit = false;
+            this.gridColumn85.OptionsColumn.AllowFocus = false;
             this.gridColumn85.Visible = true;
             this.gridColumn85.VisibleIndex = 16;
             this.gridColumn85.Width = 27;
@@ -3110,6 +3134,8 @@
             this.gridColumn86.Caption = "SLX";
             this.gridColumn86.FieldName = "sldaxuat";
             this.gridColumn86.Name = "gridColumn86";
+            this.gridColumn86.OptionsColumn.AllowEdit = false;
+            this.gridColumn86.OptionsColumn.AllowFocus = false;
             this.gridColumn86.Visible = true;
             this.gridColumn86.VisibleIndex = 17;
             this.gridColumn86.Width = 33;

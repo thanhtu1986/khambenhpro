@@ -560,7 +560,7 @@ namespace KhamBenhPro.KhamBenh
                   				            FROM BANGGIADICHVU A
                				                LEFT JOIN PHONGKHAMBENH b on a.idphongkhambenh=b.idphongkhambenh
                                             left join hs_banggiavienphi BH ON BH.IdGiaDichVu=(SELECT TOP 1 IdGiaDichVu FROM hs_banggiavienphi BH0 WHERE BH0.IdDichVu=A.IDBANGGIADICHVU AND BH0.TuNgay<=GETDATE() ORDER BY TuNgay DESC)
-                                            WHERE b.loaiphong = 1 ";
+                                            WHERE b.loaiphong = 1 and a.IsActive=1 ";
             DataTable dtCLS1 = DataAcess.Connect.GetTable(sql);
             repositoryItemCLS.NullText = @"Nhập tên CLS";
             repositoryItemCLS.DataSource = dtCLS1;
@@ -2297,7 +2297,7 @@ namespace KhamBenhPro.KhamBenh
             frm01.Show();
         }
 
-        private void dtgvChanDoan_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dtgvChanDoan_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
             #region Xóa chẩn đoán phối hợp trên datagridview
             int r = dtgvChanDoan.CurrentCell.RowIndex;
@@ -2316,7 +2316,7 @@ namespace KhamBenhPro.KhamBenh
                                 {
                                     if (dtgvChanDoan.Rows[r].Cells["ID_CDPH"].Value.ToString() != "" || dtgvChanDoan.Rows[r].Cells["ID_CDPH"].Value.ToString() != null || dtgvChanDoan.Rows[r].Cells["ID_CDPH"].Value.ToString() != "0")
                                     {
-                                        if (MessageBox.Show("Bạn có chắc muốn xóa?", "Xóa Chẩn đoán sơ bộ", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                                        if (MessageBox.Show("Bạn có chắc muốn xóa?", "Xóa Chẩn đoán phối hợp", MessageBoxButtons.OKCancel) == DialogResult.OK)
                                         {
                                             string sql = "delete chandoanphoihop where id='" + dtgvChanDoan.Rows[r].Cells["ID_CDPH"].Value.ToString() + "'";
                                             DataTable xoacdsb = DataAcess.Connect.GetTable(sql);
@@ -2853,11 +2853,11 @@ namespace KhamBenhPro.KhamBenh
                 simpleButton1.PerformClick();
                 return true;
             }
-            else if (keyData == Keys.F11)
-            {
-                MessageBox.Show("Chưa có chức năng!");
-                return true;
-            }
+            //else if (keyData == Keys.F11)
+            //{
+            //    MessageBox.Show("Chưa có chức năng!");
+            //    return true;
+            //}
             //else if (keyData == Keys.F12)
             //{
             //    btthongtuyen.PerformClick();
@@ -3103,7 +3103,125 @@ namespace KhamBenhPro.KhamBenh
             }
         }
 
-     
-     
+        private void txtMach_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Tab)
+            {
+                txtHuyetAp.Focus();
+            }
+        }
+
+        private void txtHuyetAp_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Tab)
+            {
+                txtHuyetAp2.Focus();
+            }
+        }
+
+        private void txtHuyetAp2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Tab)
+            {
+                txtNhietDo.Focus();
+            }
+        }
+
+        private void txtNhietDo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Tab)
+            {
+                txtNhipTho.Focus();
+            }
+        }
+
+        private void txtNhipTho_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Tab)
+            {
+                txtCanNang.Focus();
+            }
+        }
+
+        private void txtCanNang_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Tab)
+            {
+                txtChieuCao.Focus();
+            }
+        }
+
+        private void txtChieuCao_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Tab)
+            {
+                txtBMI.Focus();
+            }
+        }
+
+        private void txtBMI_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Tab)
+            {
+                txttiensu.Focus();
+            }
+        }
+
+        private void txttiensu_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Tab)
+            {
+                txttrieuchung.Focus();
+            }
+        }
+
+        private void txttrieuchung_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Tab)
+            {
+                txtbenhsu.Focus();
+            }
+        }
+
+        private void txtbenhsu_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Tab)
+            {
+                txtdiung.Focus();
+            }
+        }
+
+        private void txtdiung_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Tab)
+            {
+                sluBacsi.Focus();
+            }
+        }
+
+        private void gluCDSobo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+            {
+                btnThemCDSB_Click_1(sender,e);
+            }
+        }
+
+        private void slNhomCLS_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+            {
+                btnNhomCLS_Click(sender, e);
+            }
+        }
+
+        private void sluCDPH_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+            {
+                btnThemCDPH_Click_1(sender, e);
+            }
+        }
+
     }
 }
