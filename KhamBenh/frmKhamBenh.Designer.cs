@@ -1777,8 +1777,11 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.txtLoidan);
+            this.splitContainer1.Panel1.Controls.Add(this.chkMoiKham);
+            this.splitContainer1.Panel1.Controls.Add(this.gluBacSi2);
             this.splitContainer1.Panel1.Controls.Add(this.txtCDXD);
             this.splitContainer1.Panel1.Controls.Add(this.txtGhichu);
+            this.splitContainer1.Panel1.Controls.Add(this.label35);
             this.splitContainer1.Panel1.Controls.Add(this.label22);
             this.splitContainer1.Panel1.Controls.Add(this.label23);
             this.splitContainer1.Panel1.Controls.Add(this.txtSongayratoa);
@@ -1809,9 +1812,9 @@
             // 
             // 
             this.txtLoidan.Border.Class = "TextBoxBorder";
-            this.txtLoidan.Location = new System.Drawing.Point(99, 197);
+            this.txtLoidan.Location = new System.Drawing.Point(100, 197);
             this.txtLoidan.Name = "txtLoidan";
-            this.txtLoidan.Size = new System.Drawing.Size(706, 21);
+            this.txtLoidan.Size = new System.Drawing.Size(705, 21);
             this.txtLoidan.TabIndex = 37;
             // 
             // txtCDXD
@@ -1827,9 +1830,9 @@
             // 
             // 
             this.txtGhichu.Border.Class = "TextBoxBorder";
-            this.txtGhichu.Location = new System.Drawing.Point(99, 172);
+            this.txtGhichu.Location = new System.Drawing.Point(100, 172);
             this.txtGhichu.Name = "txtGhichu";
-            this.txtGhichu.Size = new System.Drawing.Size(706, 21);
+            this.txtGhichu.Size = new System.Drawing.Size(705, 21);
             this.txtGhichu.TabIndex = 36;
             // 
             // label22
@@ -1854,7 +1857,7 @@
             // 
             // txtSongayratoa
             // 
-            this.txtSongayratoa.Location = new System.Drawing.Point(100, 90);
+            this.txtSongayratoa.Location = new System.Drawing.Point(100, 89);
             this.txtSongayratoa.Name = "txtSongayratoa";
             this.txtSongayratoa.Size = new System.Drawing.Size(74, 21);
             this.txtSongayratoa.TabIndex = 35;
@@ -1979,7 +1982,7 @@
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(180, 93);
+            this.label21.Location = new System.Drawing.Point(180, 92);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(114, 16);
             this.label21.TabIndex = 29;
@@ -2010,7 +2013,7 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(6, 94);
+            this.label20.Location = new System.Drawing.Point(6, 91);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(92, 16);
             this.label20.TabIndex = 28;
@@ -2024,12 +2027,10 @@
             this.expandablePanel2.Controls.Add(this.groupControl4);
             this.expandablePanel2.Controls.Add(this.groupControl5);
             this.expandablePanel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.expandablePanel2.Expanded = false;
-            this.expandablePanel2.ExpandedBounds = new System.Drawing.Rectangle(0, 78, 1038, 230);
             this.expandablePanel2.ExpandOnTitleClick = true;
-            this.expandablePanel2.Location = new System.Drawing.Point(0, 244);
+            this.expandablePanel2.Location = new System.Drawing.Point(0, 78);
             this.expandablePanel2.Name = "expandablePanel2";
-            this.expandablePanel2.Size = new System.Drawing.Size(1038, 26);
+            this.expandablePanel2.Size = new System.Drawing.Size(1038, 230);
             this.expandablePanel2.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.expandablePanel2.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.expandablePanel2.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -2051,10 +2052,7 @@
             // 
             this.groupControl3.CaptionImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("groupControl3.CaptionImageOptions.Image")));
             this.groupControl3.Controls.Add(this.label17);
-            this.groupControl3.Controls.Add(this.chkMoiKham);
-            this.groupControl3.Controls.Add(this.gluBacSi2);
             this.groupControl3.Controls.Add(this.label34);
-            this.groupControl3.Controls.Add(this.label35);
             this.groupControl3.Controls.Add(this.chkThuphi);
             this.groupControl3.Controls.Add(this.sluKhoa);
             this.groupControl3.Controls.Add(this.sluPK);
@@ -2068,7 +2066,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(9, 33);
+            this.label17.Location = new System.Drawing.Point(8, 38);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(39, 14);
             this.label17.TabIndex = 1;
@@ -2078,7 +2076,7 @@
             // 
             this.chkMoiKham.AutoSize = true;
             this.chkMoiKham.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkMoiKham.Location = new System.Drawing.Point(413, 65);
+            this.chkMoiKham.Location = new System.Drawing.Point(423, 125);
             this.chkMoiKham.Name = "chkMoiKham";
             this.chkMoiKham.Size = new System.Drawing.Size(77, 18);
             this.chkMoiKham.TabIndex = 8;
@@ -2087,12 +2085,12 @@
             // 
             // gluBacSi2
             // 
-            this.gluBacSi2.Location = new System.Drawing.Point(80, 64);
+            this.gluBacSi2.Location = new System.Drawing.Point(100, 124);
             this.gluBacSi2.Name = "gluBacSi2";
             this.gluBacSi2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.gluBacSi2.Properties.View = this.gridView7;
-            this.gluBacSi2.Size = new System.Drawing.Size(316, 20);
+            this.gluBacSi2.Size = new System.Drawing.Size(307, 20);
             this.gluBacSi2.TabIndex = 7;
             // 
             // gridView7
@@ -2106,7 +2104,7 @@
             // 
             this.label34.AutoSize = true;
             this.label34.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(167, 33);
+            this.label34.Location = new System.Drawing.Point(166, 38);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(47, 14);
             this.label34.TabIndex = 3;
@@ -2116,7 +2114,7 @@
             // 
             this.label35.AutoSize = true;
             this.label35.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.Location = new System.Drawing.Point(9, 66);
+            this.label35.Location = new System.Drawing.Point(11, 126);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(55, 14);
             this.label35.TabIndex = 6;
@@ -2126,7 +2124,7 @@
             // 
             this.chkThuphi.AutoSize = true;
             this.chkThuphi.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkThuphi.Location = new System.Drawing.Point(413, 32);
+            this.chkThuphi.Location = new System.Drawing.Point(412, 37);
             this.chkThuphi.Name = "chkThuphi";
             this.chkThuphi.Size = new System.Drawing.Size(74, 18);
             this.chkThuphi.TabIndex = 5;
@@ -2136,7 +2134,7 @@
             // sluKhoa
             // 
             this.sluKhoa.EditValue = " ";
-            this.sluKhoa.Location = new System.Drawing.Point(52, 31);
+            this.sluKhoa.Location = new System.Drawing.Point(51, 36);
             this.sluKhoa.Name = "sluKhoa";
             this.sluKhoa.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
             this.sluKhoa.Properties.AutoComplete = false;
@@ -2179,7 +2177,7 @@
             // 
             // sluPK
             // 
-            this.sluPK.Location = new System.Drawing.Point(220, 30);
+            this.sluPK.Location = new System.Drawing.Point(219, 35);
             this.sluPK.Name = "sluPK";
             this.sluPK.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
             this.sluPK.Properties.AutoComplete = false;
@@ -2421,10 +2419,12 @@
             this.expandablePanel14.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.expandablePanel14.Controls.Add(this.grcCLShen);
             this.expandablePanel14.Dock = System.Windows.Forms.DockStyle.Top;
+            this.expandablePanel14.Expanded = false;
+            this.expandablePanel14.ExpandedBounds = new System.Drawing.Rectangle(0, 52, 1038, 192);
             this.expandablePanel14.ExpandOnTitleClick = true;
             this.expandablePanel14.Location = new System.Drawing.Point(0, 52);
             this.expandablePanel14.Name = "expandablePanel14";
-            this.expandablePanel14.Size = new System.Drawing.Size(1038, 192);
+            this.expandablePanel14.Size = new System.Drawing.Size(1038, 26);
             this.expandablePanel14.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.expandablePanel14.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.expandablePanel14.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -2452,7 +2452,7 @@
             this.grcCLShen.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCLShen,
             this.btnXoahen});
-            this.grcCLShen.Size = new System.Drawing.Size(1038, 166);
+            this.grcCLShen.Size = new System.Drawing.Size(1038, 0);
             this.grcCLShen.TabIndex = 11;
             this.grcCLShen.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView9});

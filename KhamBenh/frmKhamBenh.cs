@@ -554,7 +554,7 @@ namespace KhamBenhPro.KhamBenh
                                                ,A.tendichvu as tendichvu
                                                ,BH.GiaDV as giadichvu
                                                ,BH.GIABH as giabh
-                                               ,IsSuDungChoBH=BH.ISBHYT
+                                               ,BH.ISBHYT as IsSuDungChoBH
 											   ,bh.TuNgay as fromdate
 											    ,A.TENBAOHIEM as tenbaohiem
                   				            FROM BANGGIADICHVU A
@@ -627,7 +627,7 @@ namespace KhamBenhPro.KhamBenh
                                                                 ,cls.idcanlamsan as tendichvu
                                                                 ,cls.DonGiaDV as giadichvu
                                                                 ,cls.bhtra as giabh
-                                                                ,cls.IsBHYT as IsSuDungChoBH
+                                                                ,bg.IsSuDungChoBH as IsSuDungChoBH
 																,cls.IsBHYT_Save as IsBHYT_Save
                                                                 ,soluong = cls.soluong
                                                                 ,cls.GhiChu as ghichu
@@ -1534,7 +1534,7 @@ namespace KhamBenhPro.KhamBenh
                                     {
                                         string luuCLS = @"insert into khambenhcanlamsan (idkhambenh,idcanlamsan, idbacsi,dathu, ngaythu, ngaykham, idbenhnhan
                                                                                     , maphieuCLS, soluong, BHTra, GhiChu, LoaiKhamID, BNTongPhaiTra, DonGiaBH
-                                                                                    , DonGiaDV, IsBHYT, PhuThuBH, ThanhTienBH, ThanhTienDV, IDDANGKYCLS, IdnhomInBV
+                                                                                    , DonGiaDV,, PhuThuBH, ThanhTienBH, ThanhTienDV, IDDANGKYCLS, IdnhomInBV
                                                                                     , IsBHYT_Save, IDBENHBHDONGTIEN) 
                                                                         values 
                                                         ((select max(idkhambenh) from khambenh where idchitietdangkykham='" + Truyendulieu.idchitietdangkykham + @"')
@@ -1576,7 +1576,10 @@ namespace KhamBenhPro.KhamBenh
                                 {
                                     for (int t = 0; t < gridView9.RowCount - 1; t++)
                                     {
-                                        string luuCLS = @"insert into khambenhcanlamsanhen (idkhambenh,idcanlamsan, idbacsi,dathu, ngaythu, ngaykham, idbenhnhan, maphieuCLS, soluong, BHTra, GhiChu, LoaiKhamID, BNTongPhaiTra, DonGiaBH, DonGiaDV, IsBHYT, PhuThuBH, ThanhTienBH, ThanhTienDV, IDDANGKYCLS, IdnhomInBV, IsBHYT_Save, IDBENHBHDONGTIEN) 
+                                        string luuCLS = @"insert into khambenhcanlamsanhen (idkhambenh,idcanlamsan, idbacsi,dathu, ngaythu, ngaykham
+                                                                                    , idbenhnhan, maphieuCLS, soluong, BHTra, GhiChu, LoaiKhamID, BNTongPhaiTra, DonGiaBH
+                                                                                    , DonGiaDV, IsBHYT, PhuThuBH, ThanhTienBH, ThanhTienDV, IDDANGKYCLS, IdnhomInBV
+                                                                                    , IsBHYT_Save, IDBENHBHDONGTIEN) 
                                                         values 
                                             ((select max(idkhambenh) from khambenh where idchitietdangkykham='" + Truyendulieu.idchitietdangkykham + @"')
                                             ,'" + gridView9.GetRowCellValue(t, gridView9.Columns["idbanggiadichvu"]).ToString() + @"'

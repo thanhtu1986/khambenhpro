@@ -499,7 +499,19 @@ namespace KhamBenhPro
                 dataTable2.Rows[index]["BNTRA"] = (object)Math.Round(double.Parse(dataTable2.Rows[index]["ThanhTienBH"].ToString()) * num25, 0);
                 dataTable2.Rows[index]["BHTRA"] = (object)(double.Parse(dataTable2.Rows[index]["ThanhTienBH"].ToString()) - double.Parse(dataTable2.Rows[index]["BNTRA"].ToString()));
                 dataTable2.Rows[index]["TONGTIENBNPT"] = (object)(hs_tinhtien.IsCheck(dataTable2.Rows[index]["IsBHYT"].ToString()) ? double.Parse(dataTable2.Rows[index]["BNTRA"].ToString()) + double.Parse(dataTable2.Rows[index]["PhuThuBH"].ToString()) : double.Parse(dataTable2.Rows[index]["ThanhTienDV"].ToString()));
-                str2 = str2 + " UPDATE KHAMBENHCANLAMSAN SET \r\n                                                                             IsBHYT=" + (hs_tinhtien.IsCheck(dataTable2.Rows[index]["IsBHYT"].ToString()) ? "1" : "0") + ",DonGiaBH=" + dataTable2.Rows[index]["DonGiaBH"].ToString() + ",ThanhTienBH=" + dataTable2.Rows[index]["ThanhTienBH"].ToString() + ",DonGiaDV=" + dataTable2.Rows[index]["DonGiaDV"].ToString() + ",ThanhTienDV=" + dataTable2.Rows[index]["ThanhTienDV"].ToString() + ",IDBENHBHDONGTIEN=" + dataTable2.Rows[index]["IDBENHBHDONGTIEN"].ToString() + ",PhuThuBH=" + dataTable2.Rows[index]["PhuThuBH"].ToString() + ",BNTRA=" + dataTable2.Rows[index]["BNTRA"].ToString() + ",BHTRA=" + dataTable2.Rows[index]["BHTRA"].ToString() + ",BNTongPhaiTra=" + dataTable2.Rows[index]["TONGTIENBNPT"].ToString() + ",IdNhomInBV=" + (dataTable2.Rows[index]["IdNhomInBV"].ToString() == "" ? "NULL" : dataTable2.Rows[index]["IdNhomInBV"].ToString()) + " WHERE IDKHAMBENHCANLAMSAN=" + dataTable2.Rows[index]["IDKHAMBENHCANLAMSAN"].ToString() + "\r\n";
+                str2 = str2 + @" UPDATE KHAMBENHCANLAMSAN SET 
+                IsBHYT=" + (hs_tinhtien.IsCheck(dataTable2.Rows[index]["IsBHYT"].ToString()) ? "1" : "0") + @"
+                ,DonGiaBH=" + dataTable2.Rows[index]["DonGiaBH"].ToString() + @"
+                ,ThanhTienBH=" + dataTable2.Rows[index]["ThanhTienBH"].ToString() + @"
+                ,DonGiaDV=" + dataTable2.Rows[index]["DonGiaDV"].ToString() + @"
+                ,ThanhTienDV=" + dataTable2.Rows[index]["ThanhTienDV"].ToString() + @"
+                ,IDBENHBHDONGTIEN=" + dataTable2.Rows[index]["IDBENHBHDONGTIEN"].ToString() + @"
+                ,PhuThuBH=" + dataTable2.Rows[index]["PhuThuBH"].ToString() + @"
+                ,BNTRA=" + dataTable2.Rows[index]["BNTRA"].ToString() + @"
+                ,BHTRA=" + dataTable2.Rows[index]["BHTRA"].ToString() + @"
+                ,BNTongPhaiTra=" + dataTable2.Rows[index]["TONGTIENBNPT"].ToString() + @"
+                ,IdNhomInBV=" + (dataTable2.Rows[index]["IdNhomInBV"].ToString() == "" ? "NULL" : dataTable2.Rows[index]["IdNhomInBV"].ToString()) + @" 
+                WHERE IDKHAMBENHCANLAMSAN=" + dataTable2.Rows[index]["IDKHAMBENHCANLAMSAN"].ToString() + "";
             }
             for (int index = 0; dataTable4 != null && dataTable4.Rows.Count > 0 && index < dataTable4.Rows.Count; ++index)
             {
@@ -1119,7 +1131,13 @@ namespace KhamBenhPro
                 dataTable2.Rows[index]["BNTRA"] = (object)0;
                 dataTable2.Rows[index]["BHTRA"] = (object)0;
                 dataTable2.Rows[index]["TONGTIENBNPT"] = (object)double.Parse(dataTable2.Rows[index]["ThanhTienDV"].ToString());
-                str = str + " UPDATE KHAMBENHCANLAMSAN SET \r\n                                                                                   IsBHYT=0,DonGiaBH=0,ThanhTienBH=0,DonGiaDV=" + dataTable2.Rows[index]["DonGiaDV"].ToString() + ",ThanhTienDV=" + dataTable2.Rows[index]["ThanhTienDV"].ToString() + ",IDBENHBHDONGTIEN=" + dataTable2.Rows[index]["IDBENHBHDONGTIEN"].ToString() + ",PhuThuBH=0,BNTRA=0,BHTRA=0,BNTongPhaiTra=" + dataTable2.Rows[index]["TONGTIENBNPT"].ToString() + ",IdNhomInBV=" + (dataTable2.Rows[index]["IdNhomInBV"].ToString() == "" ? "NULL" : dataTable2.Rows[index]["IdNhomInBV"].ToString()) + " WHERE IDKHAMBENHCANLAMSAN=" + dataTable2.Rows[index]["IDKHAMBENHCANLAMSAN"].ToString() + "\r\n";
+                str = str + @" UPDATE KHAMBENHCANLAMSAN SET 
+                IsBHYT=0,DonGiaBH=0,ThanhTienBH=0,DonGiaDV=" + dataTable2.Rows[index]["DonGiaDV"].ToString() + @"
+                ,ThanhTienDV=" + dataTable2.Rows[index]["ThanhTienDV"].ToString() + @"
+                ,IDBENHBHDONGTIEN=" + dataTable2.Rows[index]["IDBENHBHDONGTIEN"].ToString() + @"
+                ,PhuThuBH=0,BNTRA=0,BHTRA=0,BNTongPhaiTra=" + dataTable2.Rows[index]["TONGTIENBNPT"].ToString() + @"
+                ,IdNhomInBV=" + (dataTable2.Rows[index]["IdNhomInBV"].ToString() == "" ? "NULL" : dataTable2.Rows[index]["IdNhomInBV"].ToString()) + @" 
+                WHERE IDKHAMBENHCANLAMSAN=" + dataTable2.Rows[index]["IDKHAMBENHCANLAMSAN"].ToString() + "";
             }
             for (int index = 0; dataTable4 != null && index < dataTable4.Rows.Count; ++index)
             {
