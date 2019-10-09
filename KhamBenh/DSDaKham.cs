@@ -158,7 +158,7 @@ namespace KhamBenhPro.KhamBenh
         {
            
             Truyendulieu.idkhambenh = gridView1.GetFocusedRowCellDisplayText(idkhambenh);
-            frmRptCLS frmp = new frmRptCLS();
+            frmCLS_dathu frmp = new frmCLS_dathu();
             frmp.Show();
         }
 

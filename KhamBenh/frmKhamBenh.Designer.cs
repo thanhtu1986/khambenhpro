@@ -152,8 +152,12 @@
             this.expandablePanel1 = new DevComponents.DotNetBar.ExpandablePanel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.txtLoidan = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.chkMoiKham = new System.Windows.Forms.CheckBox();
+            this.gluBacSi2 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.gridView7 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.txtCDXD = new System.Windows.Forms.TextBox();
             this.txtGhichu = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.label35 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.txtSongayratoa = new System.Windows.Forms.TextBox();
@@ -176,11 +180,7 @@
             this.expandablePanel2 = new DevComponents.DotNetBar.ExpandablePanel();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             this.label17 = new System.Windows.Forms.Label();
-            this.chkMoiKham = new System.Windows.Forms.CheckBox();
-            this.gluBacSi2 = new DevExpress.XtraEditors.SearchLookUpEdit();
-            this.gridView7 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.label34 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
             this.chkThuphi = new System.Windows.Forms.CheckBox();
             this.sluKhoa = new KhamBenhPro.CustomGridLookUpEdit();
             this.customGridLookUpEdit1View = new KhamBenhPro.CustomGridView();
@@ -365,6 +365,8 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gluBacSi2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluCDXD.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customGridLookUpEdit2View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvChanDoan)).BeginInit();
@@ -373,8 +375,6 @@
             this.expandablePanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gluBacSi2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluKhoa.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customGridLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluPK.Properties)).BeginInit();
@@ -1107,7 +1107,7 @@
             this.label38.BackColor = System.Drawing.Color.Transparent;
             this.label38.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label38.ForeColor = System.Drawing.Color.Black;
-            this.label38.Location = new System.Drawing.Point(470, 37);
+            this.label38.Location = new System.Drawing.Point(492, 37);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(42, 13);
             this.label38.TabIndex = 62;
@@ -1119,7 +1119,7 @@
             this.label39.BackColor = System.Drawing.Color.Transparent;
             this.label39.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label39.ForeColor = System.Drawing.Color.Black;
-            this.label39.Location = new System.Drawing.Point(325, 38);
+            this.label39.Location = new System.Drawing.Point(347, 38);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(35, 13);
             this.label39.TabIndex = 61;
@@ -1127,14 +1127,14 @@
             // 
             // txtkhoa
             // 
-            this.txtkhoa.Location = new System.Drawing.Point(369, 34);
+            this.txtkhoa.Location = new System.Drawing.Point(391, 34);
             this.txtkhoa.Name = "txtkhoa";
             this.txtkhoa.Size = new System.Drawing.Size(89, 21);
             this.txtkhoa.TabIndex = 60;
             // 
             // txtPhongKham
             // 
-            this.txtPhongKham.Location = new System.Drawing.Point(519, 34);
+            this.txtPhongKham.Location = new System.Drawing.Point(541, 34);
             this.txtPhongKham.Name = "txtPhongKham";
             this.txtPhongKham.Size = new System.Drawing.Size(282, 21);
             this.txtPhongKham.TabIndex = 59;
@@ -1146,7 +1146,7 @@
             this.sluBacsi.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.sluBacsi.Properties.View = this.searchLookUpEdit6View;
-            this.sluBacsi.Size = new System.Drawing.Size(216, 20);
+            this.sluBacsi.Size = new System.Drawing.Size(249, 20);
             this.sluBacsi.TabIndex = 16;
             // 
             // searchLookUpEdit6View
@@ -1508,7 +1508,8 @@
             // 
             // btnThemCDSB
             // 
-            this.btnThemCDSB.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThemCDSB.ImageOptions.Image")));
+            this.btnThemCDSB.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThemCDSB.Appearance.Options.UseFont = true;
             this.btnThemCDSB.Location = new System.Drawing.Point(347, 68);
             this.btnThemCDSB.Name = "btnThemCDSB";
             this.btnThemCDSB.Size = new System.Drawing.Size(75, 23);
@@ -1817,6 +1818,34 @@
             this.txtLoidan.Size = new System.Drawing.Size(705, 21);
             this.txtLoidan.TabIndex = 37;
             // 
+            // chkMoiKham
+            // 
+            this.chkMoiKham.AutoSize = true;
+            this.chkMoiKham.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkMoiKham.Location = new System.Drawing.Point(423, 125);
+            this.chkMoiKham.Name = "chkMoiKham";
+            this.chkMoiKham.Size = new System.Drawing.Size(77, 18);
+            this.chkMoiKham.TabIndex = 8;
+            this.chkMoiKham.Text = "Mời khám";
+            this.chkMoiKham.UseVisualStyleBackColor = true;
+            // 
+            // gluBacSi2
+            // 
+            this.gluBacSi2.Location = new System.Drawing.Point(100, 124);
+            this.gluBacSi2.Name = "gluBacSi2";
+            this.gluBacSi2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.gluBacSi2.Properties.View = this.gridView7;
+            this.gluBacSi2.Size = new System.Drawing.Size(307, 20);
+            this.gluBacSi2.TabIndex = 7;
+            // 
+            // gridView7
+            // 
+            this.gridView7.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView7.Name = "gridView7";
+            this.gridView7.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView7.OptionsView.ShowGroupPanel = false;
+            // 
             // txtCDXD
             // 
             this.txtCDXD.Location = new System.Drawing.Point(100, 17);
@@ -1835,23 +1864,33 @@
             this.txtGhichu.Size = new System.Drawing.Size(705, 21);
             this.txtGhichu.TabIndex = 36;
             // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label35.Location = new System.Drawing.Point(6, 126);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(57, 16);
+            this.label35.TabIndex = 6;
+            this.label35.Text = "Bác sĩ 2";
+            // 
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(25, 202);
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(7, 202);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(49, 16);
+            this.label22.Size = new System.Drawing.Size(52, 16);
             this.label22.TabIndex = 37;
             this.label22.Text = "Lời dặn";
             // 
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(24, 177);
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(6, 177);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(50, 16);
+            this.label23.Size = new System.Drawing.Size(52, 16);
             this.label23.TabIndex = 36;
             this.label23.Text = "Ghi chú";
             // 
@@ -1954,7 +1993,8 @@
             // 
             // btnThemCDPH
             // 
-            this.btnThemCDPH.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThemCDPH.ImageOptions.Image")));
+            this.btnThemCDPH.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThemCDPH.Appearance.Options.UseFont = true;
             this.btnThemCDPH.Location = new System.Drawing.Point(422, 52);
             this.btnThemCDPH.Name = "btnThemCDPH";
             this.btnThemCDPH.Size = new System.Drawing.Size(75, 23);
@@ -2027,10 +2067,12 @@
             this.expandablePanel2.Controls.Add(this.groupControl4);
             this.expandablePanel2.Controls.Add(this.groupControl5);
             this.expandablePanel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.expandablePanel2.Expanded = false;
+            this.expandablePanel2.ExpandedBounds = new System.Drawing.Rectangle(0, 78, 1038, 230);
             this.expandablePanel2.ExpandOnTitleClick = true;
             this.expandablePanel2.Location = new System.Drawing.Point(0, 78);
             this.expandablePanel2.Name = "expandablePanel2";
-            this.expandablePanel2.Size = new System.Drawing.Size(1038, 230);
+            this.expandablePanel2.Size = new System.Drawing.Size(1038, 26);
             this.expandablePanel2.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.expandablePanel2.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.expandablePanel2.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -2072,34 +2114,6 @@
             this.label17.TabIndex = 1;
             this.label17.Text = "KHOA";
             // 
-            // chkMoiKham
-            // 
-            this.chkMoiKham.AutoSize = true;
-            this.chkMoiKham.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkMoiKham.Location = new System.Drawing.Point(423, 125);
-            this.chkMoiKham.Name = "chkMoiKham";
-            this.chkMoiKham.Size = new System.Drawing.Size(77, 18);
-            this.chkMoiKham.TabIndex = 8;
-            this.chkMoiKham.Text = "Mời khám";
-            this.chkMoiKham.UseVisualStyleBackColor = true;
-            // 
-            // gluBacSi2
-            // 
-            this.gluBacSi2.Location = new System.Drawing.Point(100, 124);
-            this.gluBacSi2.Name = "gluBacSi2";
-            this.gluBacSi2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.gluBacSi2.Properties.View = this.gridView7;
-            this.gluBacSi2.Size = new System.Drawing.Size(307, 20);
-            this.gluBacSi2.TabIndex = 7;
-            // 
-            // gridView7
-            // 
-            this.gridView7.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridView7.Name = "gridView7";
-            this.gridView7.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridView7.OptionsView.ShowGroupPanel = false;
-            // 
             // label34
             // 
             this.label34.AutoSize = true;
@@ -2109,16 +2123,6 @@
             this.label34.Size = new System.Drawing.Size(47, 14);
             this.label34.TabIndex = 3;
             this.label34.Text = "PHÒNG";
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.Location = new System.Drawing.Point(11, 126);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(55, 14);
-            this.label35.TabIndex = 6;
-            this.label35.Text = "BÁC SĨ 2";
             // 
             // chkThuphi
             // 
@@ -2388,6 +2392,7 @@
             this.btnTaoSo.Size = new System.Drawing.Size(75, 23);
             this.btnTaoSo.TabIndex = 26;
             this.btnTaoSo.Text = "Tạo số";
+            this.btnTaoSo.Click += new System.EventHandler(this.btnTaoSo_Click_1);
             // 
             // chkNgoaitru
             // 
@@ -2717,7 +2722,7 @@
             this.expandablePanel13.Controls.Add(this.grcToaDV);
             this.expandablePanel13.Dock = System.Windows.Forms.DockStyle.Top;
             this.expandablePanel13.Expanded = false;
-            this.expandablePanel13.ExpandedBounds = new System.Drawing.Rectangle(0, 26, 1038, 180);
+            this.expandablePanel13.ExpandedBounds = new System.Drawing.Rectangle(0, 26, 1038, 174);
             this.expandablePanel13.ExpandOnTitleClick = true;
             this.expandablePanel13.Location = new System.Drawing.Point(0, 26);
             this.expandablePanel13.Name = "expandablePanel13";
@@ -3172,7 +3177,7 @@
             this.expandablePanel5.Controls.Add(this.grcToathuoc);
             this.expandablePanel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.expandablePanel5.Expanded = false;
-            this.expandablePanel5.ExpandedBounds = new System.Drawing.Rectangle(0, 0, 1038, 190);
+            this.expandablePanel5.ExpandedBounds = new System.Drawing.Rectangle(0, 0, 1038, 167);
             this.expandablePanel5.Location = new System.Drawing.Point(0, 0);
             this.expandablePanel5.Name = "expandablePanel5";
             this.expandablePanel5.Size = new System.Drawing.Size(1038, 26);
@@ -3244,6 +3249,7 @@
             this.gridView4.Name = "gridView4";
             this.gridView4.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
             this.gridView4.OptionsView.ShowGroupPanel = false;
+            this.gridView4.FocusedColumnChanged += new DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventHandler(this.gridView4_FocusedColumnChanged);
             this.gridView4.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView4_CellValueChanged_1);
             // 
             // colTenthuoc
@@ -3623,14 +3629,13 @@
             // simpleButton1
             // 
             this.simpleButton1.Appearance.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.simpleButton1.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.simpleButton1.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.simpleButton1.Appearance.Options.UseBackColor = true;
             this.simpleButton1.Appearance.Options.UseFont = true;
             this.simpleButton1.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
-            this.simpleButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
-            this.simpleButton1.Location = new System.Drawing.Point(910, 8);
+            this.simpleButton1.Location = new System.Drawing.Point(893, 9);
             this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(99, 28);
+            this.simpleButton1.Size = new System.Drawing.Size(99, 34);
             this.simpleButton1.TabIndex = 16;
             this.simpleButton1.Text = "Hẹn CLS (F10)";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click_1);
@@ -3638,14 +3643,13 @@
             // btninbv01
             // 
             this.btninbv01.Appearance.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.btninbv01.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btninbv01.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btninbv01.Appearance.Options.UseBackColor = true;
             this.btninbv01.Appearance.Options.UseFont = true;
             this.btninbv01.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
-            this.btninbv01.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btninbv01.ImageOptions.Image")));
-            this.btninbv01.Location = new System.Drawing.Point(798, 8);
+            this.btninbv01.Location = new System.Drawing.Point(781, 9);
             this.btninbv01.Name = "btninbv01";
-            this.btninbv01.Size = new System.Drawing.Size(93, 28);
+            this.btninbv01.Size = new System.Drawing.Size(93, 34);
             this.btninbv01.TabIndex = 15;
             this.btninbv01.Text = "In BV01 (F9)";
             this.btninbv01.Click += new System.EventHandler(this.btninbv01_Click_1);
@@ -3657,12 +3661,11 @@
             this.btninclsdv.Appearance.Options.UseBackColor = true;
             this.btninclsdv.Appearance.Options.UseFont = true;
             this.btninclsdv.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
-            this.btninclsdv.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btninclsdv.ImageOptions.Image")));
-            this.btninclsdv.Location = new System.Drawing.Point(688, 8);
+            this.btninclsdv.Location = new System.Drawing.Point(671, 9);
             this.btninclsdv.Name = "btninclsdv";
-            this.btninclsdv.Size = new System.Drawing.Size(93, 28);
+            this.btninclsdv.Size = new System.Drawing.Size(93, 34);
             this.btninclsdv.TabIndex = 14;
-            this.btninclsdv.Text = "In DV";
+            this.btninclsdv.Text = "In CLS (Đã thu)";
             this.btninclsdv.Click += new System.EventHandler(this.btninclsdv_Click_1);
             // 
             // btninclsbh
@@ -3672,10 +3675,9 @@
             this.btninclsbh.Appearance.Options.UseBackColor = true;
             this.btninclsbh.Appearance.Options.UseFont = true;
             this.btninclsbh.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
-            this.btninclsbh.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btninclsbh.ImageOptions.Image")));
-            this.btninclsbh.Location = new System.Drawing.Point(580, 8);
+            this.btninclsbh.Location = new System.Drawing.Point(563, 9);
             this.btninclsbh.Name = "btninclsbh";
-            this.btninclsbh.Size = new System.Drawing.Size(93, 28);
+            this.btninclsbh.Size = new System.Drawing.Size(93, 34);
             this.btninclsbh.TabIndex = 13;
             this.btninclsbh.Text = "In CLS (F8)";
             this.btninclsbh.Click += new System.EventHandler(this.btninclsbh_Click_1);
@@ -3687,10 +3689,9 @@
             this.btninthuocdv.Appearance.Options.UseBackColor = true;
             this.btninthuocdv.Appearance.Options.UseFont = true;
             this.btninthuocdv.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
-            this.btninthuocdv.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btninthuocdv.ImageOptions.Image")));
-            this.btninthuocdv.Location = new System.Drawing.Point(471, 9);
+            this.btninthuocdv.Location = new System.Drawing.Point(454, 10);
             this.btninthuocdv.Name = "btninthuocdv";
-            this.btninthuocdv.Size = new System.Drawing.Size(93, 28);
+            this.btninthuocdv.Size = new System.Drawing.Size(93, 34);
             this.btninthuocdv.TabIndex = 12;
             this.btninthuocdv.Text = "Toa DV (F7)";
             this.btninthuocdv.Click += new System.EventHandler(this.btninthuocdv_Click_1);
@@ -3702,10 +3703,9 @@
             this.btninthuocbh.Appearance.Options.UseBackColor = true;
             this.btninthuocbh.Appearance.Options.UseFont = true;
             this.btninthuocbh.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
-            this.btninthuocbh.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btninthuocbh.ImageOptions.Image")));
-            this.btninthuocbh.Location = new System.Drawing.Point(358, 9);
+            this.btninthuocbh.Location = new System.Drawing.Point(341, 10);
             this.btninthuocbh.Name = "btninthuocbh";
-            this.btninthuocbh.Size = new System.Drawing.Size(93, 28);
+            this.btninthuocbh.Size = new System.Drawing.Size(93, 34);
             this.btninthuocbh.TabIndex = 11;
             this.btninthuocbh.Text = "Toa BH (F6)";
             this.btninthuocbh.Click += new System.EventHandler(this.btninthuocbh_Click_1);
@@ -3717,10 +3717,9 @@
             this.btndelete.Appearance.Options.UseBackColor = true;
             this.btndelete.Appearance.Options.UseFont = true;
             this.btndelete.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
-            this.btndelete.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btndelete.ImageOptions.Image")));
-            this.btndelete.Location = new System.Drawing.Point(249, 8);
+            this.btndelete.Location = new System.Drawing.Point(232, 9);
             this.btndelete.Name = "btndelete";
-            this.btndelete.Size = new System.Drawing.Size(93, 28);
+            this.btndelete.Size = new System.Drawing.Size(93, 34);
             this.btndelete.TabIndex = 10;
             this.btndelete.Text = "Xóa (F3)";
             this.btndelete.Click += new System.EventHandler(this.btndelete_Click_1);
@@ -3732,12 +3731,12 @@
             this.btnmoi.Appearance.Options.UseBackColor = true;
             this.btnmoi.Appearance.Options.UseFont = true;
             this.btnmoi.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
-            this.btnmoi.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnmoi.ImageOptions.Image")));
-            this.btnmoi.Location = new System.Drawing.Point(138, 9);
+            this.btnmoi.Location = new System.Drawing.Point(121, 10);
             this.btnmoi.Name = "btnmoi";
-            this.btnmoi.Size = new System.Drawing.Size(93, 28);
+            this.btnmoi.Size = new System.Drawing.Size(93, 34);
             this.btnmoi.TabIndex = 9;
             this.btnmoi.Text = "Mới (F2)";
+            this.btnmoi.Click += new System.EventHandler(this.btnmoi_Click_1);
             // 
             // btnluu
             // 
@@ -3746,10 +3745,9 @@
             this.btnluu.Appearance.Options.UseBackColor = true;
             this.btnluu.Appearance.Options.UseFont = true;
             this.btnluu.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
-            this.btnluu.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnluu.ImageOptions.Image")));
-            this.btnluu.Location = new System.Drawing.Point(29, 9);
+            this.btnluu.Location = new System.Drawing.Point(12, 10);
             this.btnluu.Name = "btnluu";
-            this.btnluu.Size = new System.Drawing.Size(93, 28);
+            this.btnluu.Size = new System.Drawing.Size(93, 34);
             this.btnluu.TabIndex = 8;
             this.btnluu.Text = "Lưu (F1)";
             this.btnluu.Click += new System.EventHandler(this.btnluu_Click_1);
@@ -3803,6 +3801,8 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gluBacSi2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluCDXD.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customGridLookUpEdit2View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvChanDoan)).EndInit();
@@ -3812,8 +3812,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
             this.groupControl3.ResumeLayout(false);
             this.groupControl3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gluBacSi2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluKhoa.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customGridLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluPK.Properties)).EndInit();

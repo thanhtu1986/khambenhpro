@@ -182,3 +182,4 @@ E:\Code\KhamBenhPro\obj\Debug\KhamBenhPro.XML.XuatXML.resources
 E:\Code\KhamBenhPro\obj\Debug\KhamBenhPro.csproj.GenerateResource.Cache
 E:\Code\KhamBenhPro\obj\Debug\KhamBenhPro.exe.licenses
 E:\Code\KhamBenhPro\obj\Debug\KhamBenhPro.csprojResolveAssemblyReference.cache
+E:\Code\KhamBenhPro\obj\Debug\KhamBenhPro.frmCLS_dathu.resources

@@ -6,20 +6,18 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using CrystalDecisions.CrystalReports.Engine;
 using iTextSharp.text.pdf;
 
 namespace KhamBenhPro
 {
-    public partial class frmRptCLS : Form
+    public partial class frmCLS_dathu : Form
     {
-        private ReportDocument report = null;
-        public frmRptCLS()
+        public frmCLS_dathu()
         {
             InitializeComponent();
         }
 
-        private void frmRptCLS_Load(object sender, EventArgs e)
+        private void frmCLS_dathu_Load(object sender, EventArgs e)
         {
             //rptCLS rpt = new rptCLS();
             string MaPhieuCLS = "";
@@ -68,7 +66,7 @@ namespace KhamBenhPro
                         LEFT JOIN PHONGKHAMBENH F ON F.IDPHONGKHAMBENH=B.IDPHONGKHAMBENH 
                         LEFT JOIN BACSI G ON C.IDBACSI=G.IDBACSI
                         LEFT JOIN SINHHIEU SH ON C.IDKHAMBENH=SH.IDKHAMBENH
-                     WHERE  ISNULL(A.dahuy,0)=0 and ISNULL(A.dathu,0)=0 AND  A.IDKHAMBENH='" + Truyendulieu.idkhambenh + "'";
+                     WHERE  ISNULL(A.dahuy,0)=0 and ISNULL(A.dathu,0)=1 AND  A.IDKHAMBENH='" + Truyendulieu.idkhambenh + "'";
             DataTable dtmavach = DataAcess.Connect.GetTable(sql);
             if (dtmavach == null || dtmavach.Rows.Count == 0)
             {
@@ -145,14 +143,9 @@ namespace KhamBenhPro
                 else crystalReport.SetParameterValue("isCapcuu", "");
                 crystalReport.SetParameterValue("NoiGT", NoiGT);
                 crystalReport.SetParameterValue("BacsiCD", BacsiCD);
-                crystalReportViewer1.ReportSource = crystalReport;
+                rptviewdathu.ReportSource = crystalReport;
             }
         
-        }
-
-        private void btnInToa_Click(object sender, EventArgs e)
-        {
-            crystalReportViewer1.PrintReport();
         }
     }
 }

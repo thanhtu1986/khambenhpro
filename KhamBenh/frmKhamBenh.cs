@@ -28,6 +28,11 @@ namespace KhamBenhPro.KhamBenh
         int thuocdv_click = 0;
         int thuocbh_click = 0;
         int henCLS_click = 0;
+        string slke = "";
+        int cp = 0;
+        int slcp = 0;
+        string soluongke = "";
+        string ngayuong = "";
         public frmKhamBenh()
         {
             InitializeComponent();
@@ -977,6 +982,7 @@ namespace KhamBenhPro.KhamBenh
 
         private void gridView4_CellValueChanged_1(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
+           
             #region Kiểm tra trùng mã Thuốc
             try
             {
@@ -992,6 +998,7 @@ namespace KhamBenhPro.KhamBenh
                             gridView4.DeleteRow(gridView4.FocusedRowHandle);
                             return;
                         }
+                        
                     }
                 }
             }
@@ -1019,7 +1026,7 @@ namespace KhamBenhPro.KhamBenh
                                         , DonGia  = B.GIA_MUA
                                         ,b.ghichu
                                         ,b.LoiDan
-                                         ,TrungThuoc=''
+                                        ,TrungThuoc=''
                                          FROM Thuoc B  
                                         left join thuoc_donvitinh C on C.id=B.iddvt
                                         left join thuoc_cachdung cd on cd.idcachdung=B.idcachdung
@@ -1036,6 +1043,7 @@ namespace KhamBenhPro.KhamBenh
                         gridView4.SetRowCellValue(e.RowHandle, "idthuoc", dt.Rows[0]["idthuoc"].ToString());
                         // gridView2.SetRowCellValue(e.RowHandle, "MaICD", dt.Rows[0]["MaICD"].ToString());
                         gridView4.SetRowCellValue(e.RowHandle, "congthuc", dt.Rows[0]["congthuc"].ToString());
+                        //gridView4.SetRowCellValue(e.RowHandle, "soluongke", 0);
                         gridView4.SetRowCellValue(e.RowHandle, "TenDVT", dt.Rows[0]["TenDVT"].ToString());
                         gridView4.SetRowCellValue(e.RowHandle, "iddvt", dt.Rows[0]["iddvt"].ToString());
                         gridView4.SetRowCellValue(e.RowHandle, "isbhyt", dt.Rows[0]["isbhyt"].ToString());
@@ -1049,6 +1057,7 @@ namespace KhamBenhPro.KhamBenh
                         gridView4.SetRowCellValue(e.RowHandle, "idcachdung", 1);
                         gridView4.SetRowCellValue(e.RowHandle, "iddvdung", 1);
                         DataTable dtTemp = DataAcess.Connect.GetTable(this.dt_LoadBN());
+                        slcp = int.Parse(dt.Rows[0]["LoiDan"].ToString());
                         string idkb2 = dtTemp.Rows[0]["iddangkykham"].ToString();
                         string sql3 = @"select ct.idthuoc from chitietbenhnhantoathuoc ct
                                     inner join khambenh kb on kb.idkhambenh=ct.idkhambenh
@@ -1061,12 +1070,14 @@ namespace KhamBenhPro.KhamBenh
                             MessageBox.Show("Hôm nay, thuốc này đã có rồi ở phòng khám khác!");
                             gridView4.DeleteRow(gridView4.FocusedRowHandle);
                         }
-                        else return;
+                       // else return;
 
                         #region Chẩn đoán kèm theo thuốc
-                        string sql2 = @"SELECT t.idicd,d.MaICD,MoTaCD_edit 
-                                    FROM chandoantheothuoc t
-                                    inner join ChanDoanICD d on d.IDICD=t.idicd where idthuoc='" + value + "'";
+                        string sql2 = @"SELECT t.idicd,d.MaICD,MoTaCD_edit,t.idthuoc,th.LoiDan
+                                        FROM chandoantheothuoc t
+                                        inner join ChanDoanICD d on d.IDICD=t.idicd 
+										inner join thuoc th on th.idthuoc=t.idthuoc
+                                        where t.idthuoc='" + value + "'";
                         dt2 = DataAcess.Connect.GetTable(sql2);
                         for (int i = 0; i < dt2.Rows.Count; i++)
                         {
@@ -1076,8 +1087,6 @@ namespace KhamBenhPro.KhamBenh
                             string ID_CDPH = "";
                             string[] row = { idicd, MaICD, MoTaCD_edit, ID_CDPH };
                             dtgvChanDoan.Rows.Add(row);
-                            // dtgvChanDoan.AutoResizeColumns();
-                            // dtgvChanDoan.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
                         }
                         #endregion
                         #region kiểm tra trùng chẩn đoán theo thuốc
@@ -1098,11 +1107,18 @@ namespace KhamBenhPro.KhamBenh
                         #endregion
 
                     }
+                   
 
                 }
             }
             catch { return; }
             #endregion
+            slke = gridView4.GetRowCellValue(e.RowHandle, colsoluongke).ToString();
+            
+                 soluongke = gridView4.GetRowCellValue(e.RowHandle, colsoluongke).ToString();
+                 ngayuong =gridView4.GetRowCellValue(e.RowHandle, colNgayuong).ToString();
+
+           
         }
 
         
@@ -1247,7 +1263,7 @@ namespace KhamBenhPro.KhamBenh
                     {
                         chkNoitru.Checked = false;
                     }
-                    if (dt.Rows[0]["isXuatvien"].ToString() == "True")
+                    if (dt.Rows[0]["isXuatvien"].ToString() == "True" || dt.Rows[0]["isXuatvien"].ToString() == "1")
                     {
                         chkRavien.Checked = true;
                     }
@@ -1280,7 +1296,7 @@ namespace KhamBenhPro.KhamBenh
                     else
                         sluPK.EditValue = null;
                     txtSovaovien.Text = dt.Rows[0]["SOVAOVIEN1"].ToString();
-                    if (dt.Rows[0]["SOVAOVIEN1"].ToString() != "" || dt.Rows[0]["SOVAOVIEN1"].ToString() != null || dt.Rows[0]["SOVAOVIEN1"].ToString() != "0")
+                    if (dt.Rows[0]["SOVAOVIEN1"].ToString() != "" && dt.Rows[0]["SOVAOVIEN1"].ToString() != null && dt.Rows[0]["SOVAOVIEN1"].ToString() != "0")
                     {
                         btnTaoSo.Enabled = false;
 
@@ -1419,7 +1435,7 @@ namespace KhamBenhPro.KhamBenh
             }
             string cdsb = mota_CDSB + "(" + MaICD_CDSB + ")";
             DataTable dtLuuKB2 = DataAcess.Connect.GetTable(this.dt_LoadBN());
-            if (Truyendulieu.idkhambenh == "0")
+            if (btnluu.Text == "Lưu (F1)")
             {
                 if (gridView4.RowCount > 1 && chkRavien.Checked == false)
                 {
@@ -1449,7 +1465,7 @@ namespace KhamBenhPro.KhamBenh
                                                 ,'" + huongdieutri + @"'
                                                 ,'" + (sluKhoa.Text == "Chọn Khoa chuyển" ? "0" : sluKhoa.EditValue.ToString()) + @"'
                                                 ,N'" + (txtLoidan.Text == "" ? "Null" : txtLoidan.Text) + @"'  
-                                                ,'" + dtpkTaikham.Value.ToString("yyyy-MM-dd")+ @"'
+                                                ,'" + dtpkTaikham.Value.ToString("yyyy-MM-dd 00:00")+ @"'
                                                 ,1
                                                ,'" + (sluPK.Text == "Chọn phòng khám" ? "0" : sluPK.EditValue.ToString()) + @"'
                                                 ,'" + dtLuuKB2.Rows[0]["idchitietdangkykham"].ToString() + @"'
@@ -1463,7 +1479,7 @@ namespace KhamBenhPro.KhamBenh
                                                 ,'" + isravien + @"'
                                                 ,'" + Truyendulieu.PhongKhamID + @"'
                                                 ,'" + (txtSongayratoa.Text == "" ? "0" : txtSongayratoa.Text) + @"'    
-                                                ," + (txtNgayxuatkhoa.Text == "" ? "Null" : txtNgayxuatkhoa.Text) + @"   
+                                                ,'" + (txtNgayxuatkhoa.Text == "" ? null : txtNgayxuatkhoa.Text+" "+txtGiorv.Text+":"+txtPhutrv.Text ) + @"'   
                                                 ,'" + isHaveCLS + @"',0,0,0,0
                                                 ,'" + ISHAVETHUOC + @"'
                                                 ,N'" + (txtCDXD.Text == "" ? "Null" : txtCDXD.Text) + @"'    
@@ -1534,7 +1550,7 @@ namespace KhamBenhPro.KhamBenh
                                     {
                                         string luuCLS = @"insert into khambenhcanlamsan (idkhambenh,idcanlamsan, idbacsi,dathu, ngaythu, ngaykham, idbenhnhan
                                                                                     , maphieuCLS, soluong, BHTra, GhiChu, LoaiKhamID, BNTongPhaiTra, DonGiaBH
-                                                                                    , DonGiaDV,, PhuThuBH, ThanhTienBH, ThanhTienDV, IDDANGKYCLS, IdnhomInBV
+                                                                                    , DonGiaDV,IsBHYT, PhuThuBH, ThanhTienBH, ThanhTienDV, IDDANGKYCLS, IdnhomInBV
                                                                                     , IsBHYT_Save, IDBENHBHDONGTIEN) 
                                                                         values 
                                                         ((select max(idkhambenh) from khambenh where idchitietdangkykham='" + Truyendulieu.idchitietdangkykham + @"')
@@ -1625,7 +1641,8 @@ namespace KhamBenhPro.KhamBenh
                                     {
                                         for (int i = 0; i < gridView4.RowCount - 1; i++)
                                         {
-                                            string insertCTBNTT = @"insert into chitietbenhnhantoathuoc (idbenhnhantoathuoc,idthuoc,soluongke,ngayuong,moilanuong,ghichu,idkhambenh,idkho,doituongthuocID,idcachdung,iddvdung,iddvt,ischieu,issang,istoi,istrua,ngayratoa,isbhyt_save,slton,isdaxuat,slxuat)
+                                           
+                                                string insertCTBNTT = @"insert into chitietbenhnhantoathuoc (idbenhnhantoathuoc,idthuoc,soluongke,ngayuong,moilanuong,ghichu,idkhambenh,idkho,doituongthuocID,idcachdung,iddvdung,iddvt,ischieu,issang,istoi,istrua,ngayratoa,isbhyt_save,slton,isdaxuat,slxuat)
                                                         values 
                                                         ((select max(idbenhnhantoathuoc) from benhnhantoathuoc where idbenhnhan='" + dtLuuKB2.Rows[0]["idbenhnhan"].ToString() + @"')
                                                         ,'" + gridView4.GetRowCellValue(i, gridView4.Columns["idthuoc"]).ToString() + @"'
@@ -1647,7 +1664,8 @@ namespace KhamBenhPro.KhamBenh
                                                         ,'" + gridView4.GetRowCellValue(i, gridView4.Columns["IsBHYT_Save"]).ToString() + @"'
                                                         ,'" + gridView4.GetRowCellValue(i, gridView4.Columns["slton"]).ToString() + @"',0
                                                         ,'" + gridView4.GetRowCellValue(i, gridView4.Columns["sldaxuat"]).ToString() + "')";
-                                            DataTable luuToa = DataAcess.Connect.GetTable(insertCTBNTT);
+                                                DataTable luuToa = DataAcess.Connect.GetTable(insertCTBNTT);
+                                            
                                         }
                                         MessageBox.Show("Đã lưu toa BH thành công");
                                     }
@@ -1717,12 +1735,14 @@ namespace KhamBenhPro.KhamBenh
                         #endregion
                         Load_CDSB(idkhambenh_new);
                         Load_CDPH(idkhambenh_new);
+                        Load_sinhhieu(idkhambenh_new);
                         Load_CSL_gridview_new();
                         Load_CSLhen_gridview_new();
                         Load_Toathuoc_Gridview_new();
                         Load_ToathuocDV_Gridview_new();
                         clscount = gridView1.RowCount;
-                    }
+                   }
+                    
                     if (gridView4.RowCount > 1)
                     {
 
@@ -1738,7 +1758,7 @@ namespace KhamBenhPro.KhamBenh
                 }
                 else
                 {
-                    if (Truyendulieu.idkhambenh != "0")
+                    if (btnluu.Text == "Sửa (F1)")
                     {
                         #region gridview
                         //                    for (int i = 0; i < gridView2.RowCount - 1; i++)
@@ -1946,7 +1966,8 @@ namespace KhamBenhPro.KhamBenh
                             #region nếu nhập thêm thuốc thì insert
                             if (gridView4.GetRowCellValue(z, gridView4.Columns["idchitietbenhnhantoathuoc"]).ToString() == "" || gridView4.GetRowCellValue(z, gridView4.Columns["idchitietbenhnhantoathuoc"]).ToString() == null || gridView4.GetRowCellValue(z, gridView4.Columns["idchitietbenhnhantoathuoc"]).ToString() == "0")
                             {
-                                string insertCTBNTT = @"insert into chitietbenhnhantoathuoc (idbenhnhantoathuoc,idthuoc,soluongke,ngayuong,moilanuong,ghichu,idkhambenh,idkho,doituongthuocID,idcachdung,iddvdung,iddvt,ischieu,issang,istoi,istrua,ngayratoa,isbhyt_save,slton,isdaxuat,slxuat)
+                                
+                                    string insertCTBNTT = @"insert into chitietbenhnhantoathuoc (idbenhnhantoathuoc,idthuoc,soluongke,ngayuong,moilanuong,ghichu,idkhambenh,idkho,doituongthuocID,idcachdung,iddvdung,iddvt,ischieu,issang,istoi,istrua,ngayratoa,isbhyt_save,slton,isdaxuat,slxuat)
                                                             values ((select max(idbenhnhantoathuoc) from benhnhantoathuoc where idbenhnhan='" + dtLuuKB2.Rows[0]["idbenhnhan"].ToString() + @"')
                                                             ,'" + gridView4.GetRowCellValue(z, gridView4.Columns["idthuoc"]).ToString() + @"'
                                                             ,'" + gridView4.GetRowCellValue(z, gridView4.Columns["soluongke"]).ToString() + @"'
@@ -1966,7 +1987,8 @@ namespace KhamBenhPro.KhamBenh
                                                             ,'" + gridView4.GetRowCellValue(z, gridView4.Columns["IsBHYT_Save"]).ToString() + @"'
                                                             ,'" + gridView4.GetRowCellValue(z, gridView4.Columns["slton"]).ToString() + @"',0
                                                             ,'" + gridView4.GetRowCellValue(z, gridView4.Columns["sldaxuat"]).ToString() + @"')";
-                                DataTable luuToa = DataAcess.Connect.GetTable(insertCTBNTT);
+                                    DataTable luuToa = DataAcess.Connect.GetTable(insertCTBNTT);
+                                
                             }
                             #endregion
 
@@ -2041,7 +2063,7 @@ namespace KhamBenhPro.KhamBenh
                                                         ,isxuatvien='" + chkRavien.Checked + @"'
                                                         ,PhongID='" + Truyendulieu.PhongKhamID + @"'
                                                         ,songayratoa='" + txtSongayratoa.Text + @"'
-                                                        ,tgxuatvien='" + txtNgayxuatkhoa.Text + @"'
+                                                        ,tgxuatvien='" + txtNgayxuatkhoa.Text + " " + txtGiorv.Text + ":" + txtPhutrv.Text + @"'
                                                         ,IsHaveCLS='" + isHaveCLS + @"'
                                                         ,IsChoVeKT='" + chkChoveKT.Checked + @"'
                                                         ,IsChuyenVien='" + chkChuyenVien.Checked + @"'
@@ -2097,6 +2119,7 @@ namespace KhamBenhPro.KhamBenh
                         #endregion
                         Load_CDSB(Truyendulieu.idkhambenh);
                         Load_CDPH(Truyendulieu.idkhambenh);
+                        Load_sinhhieu(Truyendulieu.idkhambenh);
                         Load_CSL_gridview();
                         Load_CSLhen_gridview();
                         Load_Toathuoc_Gridview();
@@ -2112,7 +2135,7 @@ namespace KhamBenhPro.KhamBenh
                 }
         }
 
-        private void btnTaoSo_Click(object sender, EventArgs e)
+        private void btnTaoSo_Click_1(object sender, EventArgs e)
         {
             string SoVaoVien = "";
             string IsNoitru = "0";
@@ -2207,11 +2230,11 @@ namespace KhamBenhPro.KhamBenh
                         LEFT JOIN PHONGKHAMBENH F ON F.IDPHONGKHAMBENH=B.IDPHONGKHAMBENH 
                         LEFT JOIN BACSI G ON C.IDBACSI=G.IDBACSI
                         LEFT JOIN SINHHIEU SH ON C.IDKHAMBENH=SH.IDKHAMBENH
-                     WHERE  ISNULL(A.dahuy,0)=0 AND  A.IDKHAMBENH='" + Truyendulieu.idkhambenh + "'";
+                     WHERE  ISNULL(A.dahuy,0)=0 and ISNULL(A.dathu,0)=0 AND  A.IDKHAMBENH='" + Truyendulieu.idkhambenh + "'";
             DataTable dtmavach = DataAcess.Connect.GetTable(sql);
             if (dtmavach == null || dtmavach.Rows.Count == 0)
             {
-                MessageBox.Show("Không tìm thấy bệnh nhân");
+                MessageBox.Show("Không có nhập Cận lâm sàng mới!");
                 return;
             }
             else
@@ -2276,22 +2299,83 @@ namespace KhamBenhPro.KhamBenh
 
         private void btninclsdv_Click_1(object sender, EventArgs e)
         {
-            DataTable dtLuuKB = DataAcess.Connect.GetTable(this.dt_LoadBN());
-            string loaikhamID = dtLuuKB.Rows[0]["LoaiKhamID"].ToString();
-            if (loaikhamID == "1")
+            //DataTable dtLuuKB = DataAcess.Connect.GetTable(this.dt_LoadBN());
+            //string loaikhamID = dtLuuKB.Rows[0]["LoaiKhamID"].ToString();
+            //if (loaikhamID == "1")
+            //{
+            //  bool OK=hs_tinhtien.TinhTien(idphieutt, iddangkykham1, false);
+            //  if (OK)
+            //  {
+            //      MessageBox.Show("tính tiền BH");
+            //  }
+            //  else MessageBox.Show("THẤT BẠI");
+            //}
+            //else
+            //{
+            //    hs_tinhtien.TinhTienDV(idphieutt, iddangkykham1, false);
+            //    MessageBox.Show("tính tiền DV");
+            //}
+            if (Truyendulieu.idkhambenh == "0" || Truyendulieu.idkhambenh == null || Truyendulieu.idkhambenh == "")
             {
-              bool OK=hs_tinhtien.TinhTien(idphieutt, iddangkykham1, false);
-              if (OK)
-              {
-                  MessageBox.Show("tính tiền BH");
-              }
-              else MessageBox.Show("THẤT BẠI");
+                Truyendulieu.idkhambenh = idkhambenh_new;
+            }
+            string sql = @"SELECT	 
+		            	DOITUONG=(CASE WHEN DKK.LOAIKHAMID<>1 THEN NULL ELSE (CASE WHEN DKK.LOAIKHAMID=1 AND  ISNULL(B.ISSUDUNGCHOBH,0)=1  AND  ISNULL(A.ISBHYT_SAVE,0)=1 THEN N'BHYT' ELSE N'DỊCH VỤ' END) END)             
+		                        ,TENCHIDINH= case when isnull(a.ghichu,'')<> '' then B.TENDICHVU +' ('+ a.ghichu +')' else B.TENDICHVU end
+		                        ,SL=ISNULL(A.SOLUONG,0)
+		                        ,CHANDOAN=ISNULL(C.CHANDOANBANDAU,DBO.[nvk_ListMoTaChanDoan_1KhamBenh](C.IDKHAMBENH))
+		                        ,C.MAPHIEUKHAM
+		                        ,C.NGAYKHAM
+                                ,E.TENPHONGKHAMBENH
+                                ,TENNHOM='(' + REPLACE( TENNHOMCD,N'DỊCH VỤ',N'DỊCH VỤ KỸ THUẬT') + (CASE WHEN DKK.LOAIKHAMID<>1 THEN  ''   ELSE ( CASE WHEN ISNULL(B.ISSUDUNGCHOBH,0)=1  AND  ISNULL(A.ISBHYT_SAVE,0)=1 THEN N'-BHYT' ELSE N'-DỊCH VỤ' END ) END )+')'
+                                ,HOTENBS=G.TENBACSI
+                                ,MaVach=CONVERT(IMAGE,NULL)
+                                ,SH.MACH
+                                ,SH.HUYETAP1
+                                ,SH.HUYETAP2
+                                ,nvk_phong= (CASE WHEN ISNULL(C.PHONGID,0)<>0 THEN DBO.HS_TENPHONG(C.PHONGID) ELSE    isnull(
+								    (select top 1 tenphong from benhnhannoitru nn inner join kb_phong pp on pp.id=nn.idphongnoitru  where idchitietdangkykham =c.idchitietdangkykham order by ngayvaovien desc)
+								    ,0
+								        ) END)
+                                ,c.idphongkhambenh,c.idchitietdangkykham
+                                ,A.MAPHIEUCLS
+								,d.tenbenhnhan
+								,(CASE WHEN d.gioiTinh='0' THEN 'Nam' ELSE N'Nữ' END) as gioitinh
+								,d.ngaysinh
+								,d.diachi
+								,bhyt.sobhyt
+								,dkk.LoaiKhamID
+								,CONVERT(varchar,bhyt.ngaybatdau,103) as ngaybatdau
+								,CONVERT(varchar,bhyt.ngayhethan,103) as ngayhethan
+								,ndk.TENNOIDANGKY 
+                                ,bhyt.IsDungTuyen
+								,bhyt.IsCapCuu
+                                ,ngt.TENNOIDANGKY as NoiGT
+                        FROM KHAMBENHCANLAMSAN A
+                        LEFT JOIN BANGGIADICHVU B ON A.IDCANLAMSAN=B.IDBANGGIADICHVU
+                        LEFT JOIN KHAMBENH C ON A.IDKHAMBENH=C.IDKHAMBENH
+                        LEFT JOIN DANGKYKHAM DKK ON C.IDDANGKYKHAM=DKK.IDDANGKYKHAM
+						left join BENHNHAN_BHYT bhyt on bhyt.IDBENHNHAN_BH=dkk.IDBENHNHAN_BH
+						left join KB_NOIDANGKYKB ndk on ndk.IDNOIDANGKY=bhyt.IdNoiDangKyBH
+                        left join KB_NOIDANGKYKB ngt on ngt.IDNOIDANGKY=bhyt.IdNoiGioiThieu
+                        LEFT JOIN BENHNHAN D ON C.IDBENHNHAN=D.IDBENHNHAN                       
+                        LEFT JOIN PHONGKHAMBENH E ON E.IDPHONGKHAMBENH=ISNULL(C.IDKHOA,C.IDPHONGKHAMBENH)
+                        LEFT JOIN PHONGKHAMBENH F ON F.IDPHONGKHAMBENH=B.IDPHONGKHAMBENH 
+                        LEFT JOIN BACSI G ON C.IDBACSI=G.IDBACSI
+                        LEFT JOIN SINHHIEU SH ON C.IDKHAMBENH=SH.IDKHAMBENH
+                     WHERE  ISNULL(A.dahuy,0)=0 and ISNULL(A.dathu,0)=1 AND  A.IDKHAMBENH='" + Truyendulieu.idkhambenh + "'";
+            DataTable dtmavach = DataAcess.Connect.GetTable(sql);
+            if (dtmavach == null || dtmavach.Rows.Count == 0)
+            {
+                MessageBox.Show("Không có CLS đã thu!");
+                return;
             }
             else
             {
-                hs_tinhtien.TinhTienDV(idphieutt, iddangkykham1, false);
-                MessageBox.Show("tính tiền DV");
+                frmCLS_dathu frmp_dathu = new frmCLS_dathu();
+                frmp_dathu.Show();
             }
+
         }
 
         private void simpleButton1_Click_1(object sender, EventArgs e)
@@ -2352,7 +2436,7 @@ namespace KhamBenhPro.KhamBenh
             if (chkRavien.Checked == true)
             {
                 txtNgayxuatkhoa.Text = DateTime.Now.ToString("yyyy-MM-dd");
-                txtGiorv.Text = DateTime.Now.ToString("hh");
+                txtGiorv.Text = DateTime.Now.ToString("HH");
                 txtPhutrv.Text = DateTime.Now.ToString("mm");
             }
             else
@@ -2558,7 +2642,21 @@ namespace KhamBenhPro.KhamBenh
             // dtgvCDSB.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             #endregion
         }
-
+        public void Load_sinhhieu(string idkhambenh)
+        {
+            #region Lấy sinh hiệu
+            string sql = @"select * from sinhhieu where idkhambenh="+idkhambenh+"";
+            DataTable sinhhieu = DataAcess.Connect.GetTable(sql);
+            txtMach.Text = sinhhieu.Rows[0]["MACH"].ToString();
+            txtNhietDo.Text = sinhhieu.Rows[0]["NHIETDO"].ToString();
+            txtHuyetAp.Text = sinhhieu.Rows[0]["HUYETAP1"].ToString();
+            txtHuyetAp2.Text = sinhhieu.Rows[0]["HUYETAP2"].ToString();
+            txtNhipTho.Text = sinhhieu.Rows[0]["NHIPTHO"].ToString();
+            txtCanNang.Text = sinhhieu.Rows[0]["CANNANG"].ToString();
+            txtChieuCao.Text = sinhhieu.Rows[0]["CHIEUCAO"].ToString();
+            txtBMI.Text = sinhhieu.Rows[0]["BMI"].ToString();
+            #endregion
+        }
 
         public void Load_CDPH(string idkhambenh)
         {
@@ -2886,8 +2984,40 @@ namespace KhamBenhPro.KhamBenh
                              inner join KB_ChiTietNhomCLS c on c.NhomID=n.NhomId
                              inner join banggiadichvu bg on bg.idbanggiadichvu=c.idbanggiadichvu
                              where n.NhomId='" + slNhomCLS.EditValue + "' and bg.IsActive=1";
-            DataTable dtNhomCLS = DataAcess.Connect.GetTable(sql);
-            grcCLS.DataSource = dtNhomCLS;
+            DataTable table = DataAcess.Connect.GetTable(sql);
+
+            DataTable dt = (DataTable)grcCLS.DataSource;
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                int t = 0;
+                for (int j = 0; j < dt.Rows.Count; j++)
+                {
+                    if (table.Rows[i]["idbanggiadichvu"].ToString() == dt.Rows[j]["idbanggiadichvu"].ToString())
+                    {
+                        t = t + 1;
+                    }
+                }
+                if (t == 0)
+                {
+                    DataRow row;
+                    row = dt.NewRow();
+                    row["idbanggiadichvu"] = table.Rows[i]["idbanggiadichvu"].ToString();
+                    row["tendichvu"] = table.Rows[i]["tendichvu"].ToString();
+                    row["giadichvu"] = table.Rows[i]["giadichvu"].ToString();
+                    row["soluong"] = table.Rows[i]["soluong"].ToString();
+                    row["giabh"] = table.Rows[i]["giabh"].ToString();
+                    row["IsSuDungChoBH"] = table.Rows[i]["IsSuDungChoBH"].ToString();
+                    row["IsBHYT_Save"] = table.Rows[i]["IsBHYT_Save"].ToString();
+                    row["fromdate"] = table.Rows[i]["fromdate"].ToString();
+                    row["idnhomin"] = table.Rows[i]["idnhomin"].ToString();
+                    //row["ghichu"] = table.Rows[i]["ghichu"].ToString();
+                   // row["IdKBCLS"] = table.Rows[i]["IdKBCLS"].ToString();
+                    dt.Rows.Add(row);
+                }
+                //dt.Rows.Add(table.Rows[i]["ongmau"].ToString(), table.Rows[i]["ongmau"].ToString(), table.Rows[i]["ongmau"].ToString(), table.Rows[i]["ongmau"].ToString());
+            }
+            grcCLS.DataSource = dt;
+
         }
 
 
@@ -3168,6 +3298,24 @@ namespace KhamBenhPro.KhamBenh
             {
                 txttiensu.Focus();
             }
+            double chieucao = 0;
+            double cannang = 0;
+            double bmi = 0;
+            if (txtChieuCao.Text != "0" && txtChieuCao.Text != "" && txtChieuCao.Text != null)
+            {
+                chieucao = double.Parse(txtChieuCao.Text);
+            }
+            if (txtCanNang.Text != "0" && txtCanNang.Text != "" && txtCanNang.Text != null)
+            {
+                cannang = double.Parse(txtCanNang.Text);
+            }
+            if (chieucao != 0 && cannang != 0)
+            {
+                bmi = Math.Round((cannang / (chieucao * chieucao)) * 10000, 2);
+                txtBMI.Text = bmi.ToString();
+            }
+            else
+            { txtBMI.Text = ""; }
         }
 
         private void txttiensu_KeyDown(object sender, KeyEventArgs e)
@@ -3207,6 +3355,8 @@ namespace KhamBenhPro.KhamBenh
             if (e.KeyData == Keys.Enter)
             {
                 btnThemCDSB_Click_1(sender,e);
+                gluCDSobo.EditValue = null;
+                txtCDSB.Text = "";
             }
         }
 
@@ -3223,8 +3373,43 @@ namespace KhamBenhPro.KhamBenh
             if (e.KeyData == Keys.Enter)
             {
                 btnThemCDPH_Click_1(sender, e);
+                sluCDPH.EditValue = null;
+                txtCDPH.Text = "";
             }
         }
 
+        private void btnmoi_Click_1(object sender, EventArgs e)
+        {
+            Main f = (Main)this.ParentForm;
+            f.TabCtrl_main.Tabs.Remove(f.TabCtrl_main.SelectedTab);
+        }
+
+        private void gridView4_FocusedColumnChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventArgs e)
+        {
+            #region kiểm tra số lượng >0
+
+            if (gridView4.FocusedColumn == gridView4.Columns[4])
+            {
+                if (slke == "0" || slke == null || slke == "")
+                {
+                    MessageBox.Show("Số lượng kê phải >0");
+                }
+            }
+
+            #endregion
+
+            if (gridView4.FocusedColumn == gridView4.Columns[6])
+            {
+                if (slcp>0)
+                {
+                    int slchophep = int.Parse(soluongke) / int.Parse(ngayuong);
+                    if (slchophep > slcp)
+                    {
+                        MessageBox.Show("Đã vượt quá số cho phép!");
+                    }
+                }
+            }
+        }
+  
     }
 }

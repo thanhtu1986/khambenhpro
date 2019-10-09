@@ -111,6 +111,12 @@
     <Reference Include="UIAutomationClient" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="rptCLS_dathu.cs">
+      <DependentUpon>rptCLS_dathu.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="CustomGridControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -122,6 +128,12 @@
     </Compile>
     <Compile Include="frmBV01.Designer.cs">
       <DependentUpon>frmBV01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCLS_dathu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCLS_dathu.Designer.cs">
+      <DependentUpon>frmCLS_dathu.cs</DependentUpon>
     </Compile>
     <Compile Include="frmRptCLS.cs">
       <SubType>Form</SubType>
@@ -262,8 +274,15 @@
     <Compile Include="XML\XuatXML.Designer.cs">
       <DependentUpon>XuatXML.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="rptCLS_dathu.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptCLS_dathu.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmBV01.resx">
       <DependentUpon>frmBV01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCLS_dathu.resx">
+      <DependentUpon>frmCLS_dathu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRptCLS.resx">
       <DependentUpon>frmRptCLS.cs</DependentUpon>
